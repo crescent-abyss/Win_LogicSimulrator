@@ -9,6 +9,7 @@
 #include "Win_LogicSimulatorDoc.h"
 #include "Win_LogicSimulatorView.h"
 #include "ListView.h"
+#include "ListDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -1,4 +1,4 @@
-
+\=
 // ListView.cpp : 구현 파일입니다.
 //
 
@@ -13,7 +13,8 @@ IMPLEMENT_DYNCREATE(ListView, CView)
 
 ListView::ListView()
 {
-
+	// 리스트 초기화 
+	
 }
 
 ListView::~ListView()
@@ -30,6 +31,10 @@ void ListView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	// TODO: 여기에 그리기 코드를 추가합니다.
+	pDC->TextOutW(100, 10, _T("AND 게이트"));
+	pDC->TextOutW(100, 30, _T(" OR 게이트"));
+	
+
 }
 
 
