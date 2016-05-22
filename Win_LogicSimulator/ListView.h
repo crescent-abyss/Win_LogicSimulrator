@@ -15,6 +15,7 @@ protected:
 public:
 	virtual void OnDraw(CDC* pDC);      // 이 뷰를 그리기 위해 재정의되었습니다.
 	void ListView::OnInitialUpdate();
+	BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam);
 	CButton *pButton;
 	CButton *pButton2;
 	
