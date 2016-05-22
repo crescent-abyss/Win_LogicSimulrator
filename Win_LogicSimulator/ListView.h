@@ -14,7 +14,11 @@ protected:
 
 public:
 	virtual void OnDraw(CDC* pDC);      // 이 뷰를 그리기 위해 재정의되었습니다.
+	void ListView::OnInitialUpdate();
+	CButton *pButton;
+	CButton *pButton2;
 	
+
 	
 #ifdef _DEBUG
 	virtual void AssertValid() const;
