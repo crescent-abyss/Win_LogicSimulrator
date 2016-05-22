@@ -1,4 +1,4 @@
-//
+\=
 // ListView.cpp : 구현 파일입니다.
 //
 
@@ -62,7 +62,7 @@ BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 	}
 	else if (wParam >= 101){
 		CString str;
-		str.Format(_T("OR 게이트"));
+		str.Format(_T("Test 버튼 2"));
 		AfxMessageBox(str);
 	}
 
