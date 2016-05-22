@@ -38,7 +38,7 @@ void ListView::OnInitialUpdate()
 	pButton = new CButton();
 	pButton2 = new CButton();
 	pButton->Create(_T("Test Button"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 100);
-	pButton2->Create(_T("Test Button"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
+	pButton2->Create(_T("OR ∞‘¿Ã∆Æ"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
 }
 
 
