@@ -37,8 +37,8 @@ void ListView::OnInitialUpdate()
 	//TODO : Add your specialized code here
 	pButton = new CButton();
 	pButton2 = new CButton();
-	pButton->Create(_T("Test Button"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 100);
-	pButton2->Create(_T("Test Button"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
+	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 100);
+	pButton2->Create(_T("Test Button 2"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
 }
 
 
@@ -53,6 +53,21 @@ void ListView::OnDraw(CDC* pDC)
 
 }
 
+BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
+{
+	if (wParam == 100){
+		CString str;
+		str.Format(_T("AND 게이트"));
+		AfxMessageBox(str);
+	}
+	else if (wParam >= 101){
+		CString str;
+		str.Format(_T("Test 버튼 2"));
+		AfxMessageBox(str);
+	}
+
+	return CView::OnCommand(wParam, lParam);
+}
 
 // ListView 진단입니다.
 
