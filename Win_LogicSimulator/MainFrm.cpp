@@ -9,6 +9,7 @@
 #include "Win_LogicSimulatorDoc.h"
 #include "Win_LogicSimulatorView.h"
 #include "ListView.h"
+#include "TreeView.h"
 //#include "ListDlg.h"
 
 #ifdef _DEBUG
@@ -46,7 +47,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-
+	
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
@@ -94,7 +95,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CWin_LogicSimulatorView), CSize(0, 0), pContext);
 
 	// Main_Splitter 의 첫번째 행과 첫번째 열에 해당하는 창.
-	Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(ListView), CSize(200, 0), pContext);
+	Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);
 
 	// Main_Splitter 의 첫번째 행과 두번째 열에 해당하는 창.
 	Main_Splitter.CreateView(0, 1, RUNTIME_CLASS(CWin_LogicSimulatorView), CSize(0, 0), pContext);
@@ -106,6 +107,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if (!CFrameWnd::PreCreateWindow(cs))
 		return FALSE;
+	
 	// TODO: CREATESTRUCT cs를 수정하여 여기에서
 	//  Window 클래스 또는 스타일을 수정합니다.
 

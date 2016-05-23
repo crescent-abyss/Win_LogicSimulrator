@@ -44,8 +44,10 @@ void ListView::OnInitialUpdate()					// 버튼 구현
 	pTitle = new CButton();
 
 	pTitle->Create(_T("게이트"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 99);
-	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
-	pButton2->Create(_T("OR 게이트"), BS_DEFPUSHBUTTON, CRect(0, 100, 200, 150), this, 101);
+	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(100, 50, 200, 70), this, 100);
+	pButton2->Create(_T("OR 게이트"), BS_DEFPUSHBUTTON, CRect(100, 70, 200, 90), this, 101);
+
+
 }
 
 
