@@ -10,6 +10,7 @@
 #include "Win_LogicSimulatorView.h"
 #include "ListView.h"
 #include "TreeView.h"
+#include "LogicView.h"
 //#include "ListDlg.h"
 
 #ifdef _DEBUG
@@ -92,13 +93,13 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	// 미리 정의해 놓은 class 를 분할된 영역에 생성함. 크기를 지정할 수 있다.
 	// m_wndSplitter 의 두번째 행과 첫번째 열에 해당하는 창.
-	m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CWin_LogicSimulatorView), CSize(0, 0), pContext);
+	m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CWin_LogicSimulatorView), CSize(0, 0), pContext);			// 상태 정보창
 
 	// Main_Splitter 의 첫번째 행과 첫번째 열에 해당하는 창.
-	Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);
+	Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);						// 트리 리스트창
 
 	// Main_Splitter 의 첫번째 행과 두번째 열에 해당하는 창.
-	Main_Splitter.CreateView(0, 1, RUNTIME_CLASS(CWin_LogicSimulatorView), CSize(0, 0), pContext);
+	Main_Splitter.CreateView(0, 1, RUNTIME_CLASS(LogicView), CSize(0, 0), pContext);						// 로직 뷰
 
 	return TRUE;
 }
