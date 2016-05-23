@@ -5,6 +5,7 @@
 
 #pragma once
 
+extern int listvalue;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

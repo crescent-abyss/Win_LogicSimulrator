@@ -79,11 +79,13 @@ BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 		}
 	}
 	else if (wParam == 100){						// AND 게이트 클릭시
+		listvalue = 100;
 		CString str;
 		str.Format(_T("AND 게이트"));
 		AfxMessageBox(str);
 	}
 	else if(wParam == 101){							// OR 게이트 클릭시
+		listvalue = 101;
 		CString str;
 		str.Format(_T("OR 게이트"));
 		AfxMessageBox(str);
