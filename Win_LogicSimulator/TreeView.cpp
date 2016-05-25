@@ -81,8 +81,6 @@ void TreeView::OnInitialUpdate()
 }
 
 
-// TreeView 진단입니다.
-
 #ifdef _DEBUG
 void TreeView::AssertValid() const
 {

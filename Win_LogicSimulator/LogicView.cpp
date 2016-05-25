@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Win_LogicSimulator.h"
 #include "LogicView.h"
+#include "TreeView.h"
 
 
 // LogicView
@@ -21,6 +22,7 @@ LogicView::~LogicView()
 
 BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -43,8 +45,24 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		// TODO: Add your message handler code here and/or call default
 	if (nFlags & MK_LBUTTON && listvalue == 100){
 		CDC* pDC = GetDC();
-		pDC->Rectangle(point.x, point.y, point.x + 50, point.y + 50);
+		CBitmap bmp;
+		CDC MemDC;
+		BITMAP bmpInfo;
+		MemDC.CreateCompatibleDC(pDC);
+		bmp.LoadBitmapW(311);
+		bmp.GetBitmap(&bmpInfo);
+		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
+		pOldBmp = pDC->SelectObject(&bmp);
+		pDC->BitBlt(point.x, point.y, point.x +bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		MemDC.SelectObject(pOldBmp);
 		ReleaseDC(pDC);
+		
+		
+		
+	}
+	if (nFlags & MK_RBUTTON){					// 마우스 동시에 눌러야 취소됨
+		listvalue = 0;
+
 	}
 	else if(nFlags & MK_LBUTTON && listvalue == 101){
 		CDC* pDC = GetDC();

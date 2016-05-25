@@ -99,6 +99,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InfomationView.h" />
     <ClInclude Include="ListView.h" />
     <ClInclude Include="LogicView.h" />
     <ClInclude Include="MainFrm.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Win_LogicSimulatorView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InfomationView.cpp" />
     <ClCompile Include="ListView.cpp" />
     <ClCompile Include="LogicView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -131,6 +133,7 @@
     <ResourceCompile Include="Win_LogicSimulator.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\AND.bmp" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Win_LogicSimulator.ico" />
     <Image Include="res\Win_LogicSimulatorDoc.ico" />

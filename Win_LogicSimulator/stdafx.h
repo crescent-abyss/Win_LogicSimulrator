@@ -5,7 +5,7 @@
 
 #pragma once
 
-extern int listvalue;
+extern int listvalue;			// 선택된 논리게이트 종류 판별 *전역변수
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

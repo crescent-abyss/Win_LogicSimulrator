@@ -5,4 +5,4 @@
 
 #include "stdafx.h"
 
-int listvalue = 0;
+int listvalue = 0;			// �ʱⰪ
