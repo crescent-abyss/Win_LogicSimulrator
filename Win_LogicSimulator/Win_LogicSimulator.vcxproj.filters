@@ -42,6 +42,12 @@
     <ClInclude Include="ListView.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="TreeView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Win_LogicSimulator.cpp">
@@ -60,6 +66,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ListView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicView.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

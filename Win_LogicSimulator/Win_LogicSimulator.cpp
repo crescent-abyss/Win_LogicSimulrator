@@ -71,6 +71,7 @@ BOOL CWin_LogicSimulatorApp::InitInstance()
 	CWinApp::InitInstance();
 
 
+
 	EnableTaskbarInteraction(FALSE);
 
 	// RichEdit 컨트롤을 사용하려면  AfxInitRichEdit2()가 있어야 합니다.	
@@ -121,6 +122,7 @@ BOOL CWin_LogicSimulatorApp::InitInstance()
 	//  SDI 응용 프로그램에서는 ProcessShellCommand 후에 이러한 호출이 발생해야 합니다.
 	// 끌어서 놓기에 대한 열기를 활성화합니다.
 	m_pMainWnd->DragAcceptFiles();
+	AfxGetMainWnd()->SetWindowText(_T("로직 시뮬레이터 v 1.0"));
 	return TRUE;
 }
 

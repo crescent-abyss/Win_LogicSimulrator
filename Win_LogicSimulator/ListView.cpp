@@ -32,18 +32,22 @@ END_MESSAGE_MAP()
 // ListView 그리기입니다.
 
 
-void ListView::OnInitialUpdate()
+void ListView::OnInitialUpdate()					// 버튼 구현
 {
 	CView::OnInitialUpdate();
 
 	
 	//TODO : Add your specialized code here
+	
 	pButton = new CButton();
 	pButton2 = new CButton();
 	pTitle = new CButton();
+
 	pTitle->Create(_T("게이트"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 99);
-	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(0, 50, 200, 100), this, 100);
-	pButton2->Create(_T("OR 게이트"), BS_DEFPUSHBUTTON, CRect(0, 100, 200, 150), this, 101);
+	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(100, 50, 200, 70), this, 100);
+	pButton2->Create(_T("OR 게이트"), BS_DEFPUSHBUTTON, CRect(100, 70, 200, 90), this, 101);
+
+
 }
 
 
@@ -61,7 +65,7 @@ void ListView::OnDraw(CDC* pDC)
 
 BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 {
-	if (wParam == 99){
+	if (wParam == 99){								// 게이트 클릭시 메뉴 구조
 		
 		if (Flag == TRUE){
 			pButton->ShowWindow(SW_SHOW);
@@ -74,12 +78,14 @@ BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 			Flag = TRUE;
 		}
 	}
-	else if (wParam == 100){
+	else if (wParam == 100){						// AND 게이트 클릭시
+		listvalue = 100;
 		CString str;
 		str.Format(_T("AND 게이트"));
 		AfxMessageBox(str);
 	}
-	else if(wParam == 101){
+	else if(wParam == 101){							// OR 게이트 클릭시
+		listvalue = 101;
 		CString str;
 		str.Format(_T("OR 게이트"));
 		AfxMessageBox(str);
