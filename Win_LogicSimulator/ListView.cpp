@@ -65,7 +65,10 @@ void ListView::OnDraw(CDC* pDC)
 
 BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 {
-	if (wParam == 99){								// 게이트 클릭시 메뉴 구조
+	if (wParam == 0){
+		listvalue = 0;
+	}
+	else if (wParam == 99){								// 게이트 클릭시 메뉴 구조
 		
 		if (Flag == TRUE){
 			pButton->ShowWindow(SW_SHOW);

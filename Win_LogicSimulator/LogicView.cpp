@@ -43,7 +43,14 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	
 		// TODO: Add your message handler code here and/or call default
-	if (nFlags & MK_LBUTTON && listvalue == 100){
+	if (nFlags & MK_LBUTTON && listvalue == 0){
+		
+	}
+	else if (nFlags & MK_RBUTTON){					// 마우스 동시에 눌러야 취소됨
+		listvalue = 0;
+
+	}
+	else if (nFlags & MK_LBUTTON && listvalue == 100){
 		CDC* pDC = GetDC();
 		CBitmap bmp;
 		CDC MemDC;
@@ -54,16 +61,17 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x +bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(point.x+50,point.y+150,_T("And게이트"));
+
+		PositionInfoX[i] = point.x;
+		PositionInfoY[i] = point.y;
+		i = i++;
+
 		MemDC.SelectObject(pOldBmp);
 		ReleaseDC(pDC);
-		
-		
-		
+			
 	}
-	if (nFlags & MK_RBUTTON){					// 마우스 동시에 눌러야 취소됨
-		listvalue = 0;
-
-	}
+	
 	else if(nFlags & MK_LBUTTON && listvalue == 101){
 		CDC* pDC = GetDC();
 		pDC->Rectangle(point.x, point.y, point.x + 20, point.y + 20);
