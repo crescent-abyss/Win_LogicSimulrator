@@ -23,7 +23,7 @@ LogicView::~LogicView()
 BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_RBUTTONDOWN()
-	//ON_WM_MOUSEMOVE()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 
@@ -66,9 +66,10 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		PositionInfoX[current] += point.x - startx;
 		PositionInfoY[current] += point.y - starty;
 
-
+		int j;
 		startx = point.x;
 		starty = point.y;
+		
 		MemDC.CreateCompatibleDC(pDC);
 		bmp.LoadBitmapW(311);
 		bmp.GetBitmap(&bmpInfo);
