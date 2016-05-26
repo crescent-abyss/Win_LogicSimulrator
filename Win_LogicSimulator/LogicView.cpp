@@ -45,6 +45,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		// TODO: Add your message handler code here and/or call default
 	if (nFlags & MK_LBUTTON && listvalue == 100){
 		CDC* pDC = GetDC();
+		/*
 		CBitmap bmp;
 		CDC MemDC;
 		BITMAP bmpInfo;
@@ -55,6 +56,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x +bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
 		MemDC.SelectObject(pOldBmp);
+		*/
 		ReleaseDC(pDC);
 		
 		

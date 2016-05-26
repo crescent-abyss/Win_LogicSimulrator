@@ -78,7 +78,7 @@ IDR_Win_LogicSimulaTYPE ICON                    "res\\Win_LogicSimulatorDoc.ico"
 //
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
-IDB_BITMAP1             BITMAP                  "C:\\Users\\LKB\\Desktop\\AND.bmp"
+//IDB_BITMAP1             BITMAP                  "C:\\Users\\LKB\\Desktop\\AND.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
