@@ -66,7 +66,6 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		PositionInfoX[current] += point.x - startx;
 		PositionInfoY[current] += point.y - starty;
 
-		int j;
 		startx = point.x;
 		starty = point.y;
 		
@@ -83,6 +82,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 
 	CWnd::OnMouseMove(nFlags, point);
 }
+
 
 
 
@@ -128,8 +128,16 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		case 103:
 			bmp.LoadBitmapW(IDB_BITMAP4);
 			name = _T("NAND게이트");
+			break;
+		case 104:
+			bmp.LoadBitmapW(IDB_BITMAP5);
+			name = _T("NOR게이트");
+			break;
+		case 105:
+			bmp.LoadBitmapW(IDB_BITMAP6);
+			name = _T("XOR게이트");
+			break;
 		}
-		int i;
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);

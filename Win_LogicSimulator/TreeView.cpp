@@ -119,6 +119,12 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("NAND 게이트")) {
 		listvalue = 103;
 	}
+	else if (str == _T("NOR 게이트")) {
+		listvalue = 104;
+	}
+	else if (str == _T("XOR 게이트")) {
+		listvalue = 105;
+	}
 
 	*pResult = 0;
 }
