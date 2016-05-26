@@ -16,11 +16,9 @@ public:
 	void LogicView::OnLButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnRButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnMouseMove(UINT nFlags, CPoint point);
-	int current;
 	bool move;
 	int startx;
 	int starty;
-	
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
