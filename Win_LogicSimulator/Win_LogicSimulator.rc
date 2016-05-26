@@ -89,6 +89,10 @@ IDB_BITMAP3             BITMAP                  "res\\NOT.bmp"
 
 IDB_BITMAP4             BITMAP                  "res\\NAND.bmp"
 
+IDB_BITMAP5             BITMAP                  "res\\NOR.bmp"
+
+IDB_BITMAP6             BITMAP                  "res\\XOR.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
