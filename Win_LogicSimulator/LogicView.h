@@ -14,6 +14,14 @@ protected:
 public:
 	virtual void OnDraw(CDC* pDC);      // 이 뷰를 그리기 위해 재정의되었습니다.
 	void LogicView::OnLButtonDown(UINT nFlags, CPoint point);
+	void LogicView::OnRButtonDown(UINT nFlags, CPoint point);
+	void LogicView::OnMouseMove(UINT nFlags, CPoint point);
+	int current;
+	bool move;
+	int startx;
+	int starty;
+	
+
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE

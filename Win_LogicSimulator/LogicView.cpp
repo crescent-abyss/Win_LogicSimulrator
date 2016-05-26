@@ -23,6 +23,7 @@ LogicView::~LogicView()
 BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_RBUTTONDOWN()
+	//ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 
@@ -38,13 +39,65 @@ void LogicView::OnDraw(CDC* pDC)
 	
 }
 
+void LogicView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	if (nFlags & MK_LBUTTON == 1 && current != -1) {
+
+		CClientDC dc(this);
+		dc.SelectStockObject(NULL_BRUSH);
+		dc.SetROP2(R2_NOT);
+
+		CDC* pDC = GetDC();
+
+		CBitmap bmp;
+		CDC MemDC;
+		BITMAP bmpInfo;
+		MemDC.CreateCompatibleDC(pDC);
+		bmp.LoadBitmapW(311);
+		bmp.GetBitmap(&bmpInfo);
+		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
+		pOldBmp = pDC->SelectObject(&bmp);
+		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));
+
+
+		// 이동
+		PositionInfoX[current] += point.x - startx;
+		PositionInfoY[current] += point.y - starty;
+
+
+		startx = point.x;
+		starty = point.y;
+		MemDC.CreateCompatibleDC(pDC);
+		bmp.LoadBitmapW(311);
+		bmp.GetBitmap(&bmpInfo);
+
+		pOldBmp = pDC->SelectObject(&bmp);
+		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));
+
+
+	}
+
+	CWnd::OnMouseMove(nFlags, point);
+}
+
+
 
 void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	
 		// TODO: Add your message handler code here and/or call default
 	if (nFlags & MK_LBUTTON && listvalue == 0){
-		
+		current = -1;
+		for (int i = 0; i < PositionInfoX[i]; i++) {
+			if (PositionInfoX[i] <= point.x && point.x <= PositionInfoX[i] + 50 &&
+				PositionInfoY[i] <= point.y && point.y <= PositionInfoY[i] + 50) {
+				current = i;
+				break;
+			}
+		}
 	}
 	else if (nFlags & MK_RBUTTON){					// 마우스 동시에 눌러야 취소됨
 		listvalue = 0;
@@ -93,6 +146,13 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	
 	CView::OnLButtonDown(nFlags, point);
 }
+
+void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
+	if (nFlags & MK_RBUTTON) {               //마우스 오른쪽 버튼 -> 그리기 그만
+		listvalue = 0;
+	}
+}
+
 
 
 // LogicView 진단입니다.
