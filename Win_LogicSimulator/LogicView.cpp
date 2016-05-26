@@ -52,6 +52,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (nFlags & MK_LBUTTON && listvalue == 100){
 		CDC* pDC = GetDC();
+		/*
 		CBitmap bmp;
 		CDC MemDC;
 		BITMAP bmpInfo;
@@ -68,6 +69,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		i = i++;
 
 		MemDC.SelectObject(pOldBmp);
+		*/
 		ReleaseDC(pDC);
 			
 	}
