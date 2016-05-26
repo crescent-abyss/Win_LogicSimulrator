@@ -42,13 +42,11 @@ void LogicView::OnDraw(CDC* pDC)
 void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	if (nFlags & MK_LBUTTON == 1 && current != -1 && listvalue == 0) {
-
-		CClientDC dc(this);
-		dc.SelectStockObject(NULL_BRUSH);
-		dc.SetROP2(R2_NOT);
+	if (nFlags & MK_LBUTTON && listvalue == 0) {						// 마우스 이동시  그림 위치 변경 
 
 		CDC* pDC = GetDC();
+		pDC->SelectStockObject(NULL_BRUSH);
+		pDC->SetROP2(R2_NOT);
 
 		CBitmap bmp;
 		CDC MemDC;
@@ -58,6 +56,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		
+		DeleteObject(bmp);
 
 
 		// 이동
@@ -71,6 +70,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
 		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));
+		DeleteObject(bmp);
 
 
 	}
@@ -86,7 +86,6 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	
 		// TODO: Add your message handler code here and/or call default
 	if (nFlags & MK_LBUTTON && listvalue == 0){
-		current = -1;
 		for (int i = 0; i < PositionInfoX[i]; i++) {
 			if (PositionInfoX[i] <= point.x && point.x <= PositionInfoX[i] + 50 &&
 				PositionInfoY[i] <= point.y && point.y <= PositionInfoY[i] + 50) {
@@ -99,7 +98,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		listvalue = 0;
 
 	}
-	else {											//게이트 그리기
+	else if(listvalue > 99 && listvalue < 110){											//게이트 그리기
 		CDC* pDC = GetDC();
 		CString name;
 		CBitmap bmp;
