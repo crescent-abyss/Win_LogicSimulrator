@@ -18,7 +18,6 @@ public:
 	BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam);
 	CButton *pButton;
 	CButton *pButton2;
-	CButton *pButton3;
 	CButton *pTitle;
 	bool Flag = TRUE;
 
