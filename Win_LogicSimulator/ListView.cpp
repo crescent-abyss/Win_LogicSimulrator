@@ -41,11 +41,13 @@ void ListView::OnInitialUpdate()					// 버튼 구현
 	
 	pButton = new CButton();
 	pButton2 = new CButton();
+	pButton3 = new CButton();
 	pTitle = new CButton();
 
 	pTitle->Create(_T("게이트"), BS_DEFPUSHBUTTON, CRect(0, 0, 200, 50), this, 99);
 	pButton->Create(_T("AND 게이트"), BS_DEFPUSHBUTTON, CRect(100, 50, 200, 70), this, 100);
 	pButton2->Create(_T("OR 게이트"), BS_DEFPUSHBUTTON, CRect(100, 70, 200, 90), this, 101);
+	pButton3->Create(_T("NOT 게이트"), BS_DEFPUSHBUTTON, CRect(100, 90, 200, 110), this, 102);
 
 
 }
@@ -93,7 +95,12 @@ BOOL ListView::OnCommand(WPARAM wParam, LPARAM lParam)
 		str.Format(_T("OR 게이트"));
 		AfxMessageBox(str);
 	}
-
+	else if (wParam == 102) {						// NOT 게이트 클릭시
+		listvalue = 102;
+		CString str;
+		str.Format(_T("NOT 게이트"));
+		AfxMessageBox(str);
+	}
 	return CView::OnCommand(wParam, lParam);
 }
 

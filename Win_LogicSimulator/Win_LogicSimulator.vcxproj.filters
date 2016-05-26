@@ -105,5 +105,20 @@
     <Image Include="..\..\..\..\..\Desktop\AND.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\OR.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\AND.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NOT.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\bitmap4.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NAND.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

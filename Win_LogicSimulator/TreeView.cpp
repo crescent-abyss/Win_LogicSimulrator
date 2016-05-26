@@ -113,6 +113,12 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("OR 게이트")){
 		listvalue = 101;
 	}
+	else if (str == _T("NOT 게이트")) {
+		listvalue = 102;
+	}
+	else if (str == _T("NAND 게이트")) {
+		listvalue = 103;
+	}
 
 	*pResult = 0;
 }

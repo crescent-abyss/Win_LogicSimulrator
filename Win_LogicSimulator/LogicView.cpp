@@ -50,35 +50,47 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		listvalue = 0;
 
 	}
-	else if (nFlags & MK_LBUTTON && listvalue == 100){
+	else {											//게이트 그리기
 		CDC* pDC = GetDC();
-		
+		CString name;
 		CBitmap bmp;
 		CDC MemDC;
 		BITMAP bmpInfo;
 		MemDC.CreateCompatibleDC(pDC);
-		bmp.LoadBitmapW(311);
+		
+		switch (listvalue) {
+		case 100:
+			bmp.LoadBitmapW(IDB_BITMAP1);
+			name = _T("AND게이트");
+			break;
+		case 101:
+			bmp.LoadBitmapW(IDB_BITMAP2);
+			name = _T("OR게이트");
+			break;
+		case 102:
+			bmp.LoadBitmapW(IDB_BITMAP3);
+			name = _T("NOT게이트");
+			break;
+		case 103:
+			bmp.LoadBitmapW(IDB_BITMAP4);
+			name = _T("NAND게이트");
+		}
+
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
-		pDC->BitBlt(point.x, point.y, point.x +bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x+50,point.y+150,_T("And게이트"));
+		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(point.x + 50, point.y + 150, name);
 
 		PositionInfoX[i] = point.x;
 		PositionInfoY[i] = point.y;
 		i = i++;
 
 		MemDC.SelectObject(pOldBmp);
-		
+
 		ReleaseDC(pDC);
-			
 	}
 	
-	else if(nFlags & MK_LBUTTON && listvalue == 101){
-		CDC* pDC = GetDC();
-		pDC->Rectangle(point.x, point.y, point.x + 20, point.y + 20);
-		ReleaseDC(pDC);
-	}
 	CView::OnLButtonDown(nFlags, point);
 }
 
