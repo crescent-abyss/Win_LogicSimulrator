@@ -123,7 +123,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			bmp.LoadBitmapW(IDB_BITMAP4);
 			name = _T("NAND°ÔÀÌÆ®");
 		}
-
+		int i;
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
