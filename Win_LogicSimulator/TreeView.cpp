@@ -125,6 +125,15 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("XOR 게이트")) {
 		listvalue = 105;
 	}
+	else if (str == _T("D-플립플롭")) {
+		listvalue = 200;
+	}
+	else if (str == _T("JK-플립플롭")) {
+		listvalue = 201;
+	}
+	else if (str == _T("T-플립플롭")) {
+		listvalue = 202;
+	}
 
 	*pResult = 0;
 }
