@@ -57,22 +57,17 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		bmp.LoadBitmapW(311);
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
-		pOldBmp = pDC->SelectObject(&bmp);
-		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));
+
 
 
 		// 이동
 		PositionInfoX[current] += point.x - startx;
 		PositionInfoY[current] += point.y - starty;
 
+		
 		startx = point.x;
 		starty = point.y;
 		
-		MemDC.CreateCompatibleDC(pDC);
-		bmp.LoadBitmapW(311);
-		bmp.GetBitmap(&bmpInfo);
-
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
 		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));

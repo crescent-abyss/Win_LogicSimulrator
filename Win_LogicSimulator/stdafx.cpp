@@ -9,3 +9,4 @@ int listvalue = 0;			// �ʱⰪ
 float PositionInfoX[100] = { NULL };
 float PositionInfoY[100] = { NULL };
 int i = 0;
+int current = 0;
