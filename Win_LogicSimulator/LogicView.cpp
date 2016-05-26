@@ -30,8 +30,8 @@ END_MESSAGE_MAP()
 
 void LogicView::OnDraw(CDC* pDC)
 {
-	//CDocument* pDoc = GetDocument();
-	//ASSERT_VALID(pDoc);
+	CDocument* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
 	
 
 	// TODO: 여기에 그리기 코드를 추가합니다.
@@ -52,7 +52,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (nFlags & MK_LBUTTON && listvalue == 100){
 		CDC* pDC = GetDC();
-		/*
+		
 		CBitmap bmp;
 		CDC MemDC;
 		BITMAP bmpInfo;
@@ -69,7 +69,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		i = i++;
 
 		MemDC.SelectObject(pOldBmp);
-		*/
+		
 		ReleaseDC(pDC);
 			
 	}

@@ -77,6 +77,9 @@
     <ClCompile Include="LogicView.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="InfomationView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Win_LogicSimulator.reg" />

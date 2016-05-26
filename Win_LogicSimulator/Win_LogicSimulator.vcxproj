@@ -112,6 +112,7 @@
     <ClInclude Include="Win_LogicSimulatorView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InfomationView.cpp" />
     <ClCompile Include="ListView.cpp" />
     <ClCompile Include="LogicView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
