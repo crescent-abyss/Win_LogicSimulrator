@@ -136,10 +136,13 @@
     <Image Include="..\..\..\..\..\Desktop\AND.bmp" />
     <Image Include="res\AND.bmp" />
     <Image Include="res\bitmap4.bmp" />
+    <Image Include="res\D.bmp" />
+    <Image Include="res\JK.bmp" />
     <Image Include="res\NAND.bmp" />
     <Image Include="res\NOR.bmp" />
     <Image Include="res\NOT.bmp" />
     <Image Include="res\OR.bmp" />
+    <Image Include="res\T.bmp" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Win_LogicSimulator.ico" />
     <Image Include="res\Win_LogicSimulatorDoc.ico" />

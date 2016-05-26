@@ -123,5 +123,14 @@
     <Image Include="res\XOR.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\D.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\JK.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\T.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

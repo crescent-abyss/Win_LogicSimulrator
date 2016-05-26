@@ -132,6 +132,18 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			bmp.LoadBitmapW(IDB_BITMAP6);
 			name = _T("XOR게이트");
 			break;
+		case 200:
+			bmp.LoadBitmapW(IDB_BITMAP7);
+			name = _T("D플립플롭");
+			break;
+		case 201:
+			bmp.LoadBitmapW(IDB_BITMAP8);
+			name = _T("JK플립플롭");
+			break;
+		case 202:
+			bmp.LoadBitmapW(IDB_BITMAP9);
+			name = _T("T플립플롭");
+			break;
 		}
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);

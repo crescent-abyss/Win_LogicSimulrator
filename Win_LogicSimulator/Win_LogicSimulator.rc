@@ -93,6 +93,12 @@ IDB_BITMAP5             BITMAP                  "res\\NOR.bmp"
 
 IDB_BITMAP6             BITMAP                  "res\\XOR.bmp"
 
+IDB_BITMAP7             BITMAP                  "res\\D.bmp"
+
+IDB_BITMAP8             BITMAP                  "res\\JK.bmp"
+
+IDB_BITMAP9             BITMAP                  "res\\T.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
