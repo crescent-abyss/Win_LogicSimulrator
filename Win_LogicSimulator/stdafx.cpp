@@ -5,8 +5,11 @@
 
 #include "stdafx.h"
 
-int listvalue = 0;			// 초기값
+int listvalue = -1;			// 초기값
 float PositionInfoX[100] = { NULL };
 float PositionInfoY[100] = { NULL };
 int i = 0;
 int current = 0;
+int m_ptBitmapX[100] = { NULL };
+int m_ptBitmapY[100] = { NULL };
+int bitmap_name[100] = { NULL };

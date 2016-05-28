@@ -8,7 +8,8 @@
 
 CString gate_name[100];
 CString name;
-CString bitmap_name[100];
+
+
 
 // LogicView
 
@@ -27,6 +28,10 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_RBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONUP()
+	ON_WM_LBUTTONUP()
+
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -36,7 +41,6 @@ void LogicView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
-	
 
 	// TODO: 여기에 그리기 코드를 추가합니다.
 	
@@ -45,50 +49,35 @@ void LogicView::OnDraw(CDC* pDC)
 void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	if (nFlags & MK_LBUTTON && listvalue == 0) {						// 마우스 이동시  그림 위치 변경 
+	if (nFlags & MK_LBUTTON && listvalue == 0) {						
 
-		CDC* pDC = GetDC();
-		pDC->SelectStockObject(NULL_BRUSH);
-		pDC->SetROP2(R2_NOT);
-
-		CBitmap bmp;
-		CDC MemDC;
-		BITMAP bmpInfo;
-		MemDC.CreateCompatibleDC(pDC);
-		bmp.LoadBitmapW(IDB_BITMAP1);
-		bmp.GetBitmap(&bmpInfo);
-		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
+		m_ptBitmapX[current] = point.x;
+		m_ptBitmapY[current] = point.y;
 		
-		DeleteObject(bmp);
-
-
-		// 이동
-		PositionInfoX[current] += point.x - startx;
-		PositionInfoY[current] += point.y - starty;
-
-		
-		startx = point.x;
-		starty = point.y;
-	
-		pOldBmp = pDC->SelectObject(&bmp);
-		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x + 10, point.y + bmpInfo.bmHeight , gate_name[current]);
-		DeleteObject(bmp);
-
-
 	}
 
 	CWnd::OnMouseMove(nFlags, point);
 }
 
 
+void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	if (listvalue == 0){
+		// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	
+		Invalidate(TRUE);
+		//AfxMessageBox(_T("test"));
+		
+	}
+	CView::OnLButtonUp(nFlags, point);
+}
 
 
 void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	
 		// TODO: Add your message handler code here and/or call default
-	if (nFlags & MK_LBUTTON && listvalue == 0){
+	if (nFlags & MK_LBUTTON && listvalue == 0){																		//클릭이 잘 안됨
 		for (int i = 0; i < PositionInfoX[i]; i++) {
 			if (PositionInfoX[i] <= point.x && point.x <= PositionInfoX[i] + 50 &&
 				PositionInfoY[i] <= point.y && point.y <= PositionInfoY[i] + 50) {
@@ -97,7 +86,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	else if (nFlags & MK_RBUTTON){					// 마우스 동시에 눌러야 취소됨
+	else if (nFlags & MK_RBUTTON){					
 		listvalue = 0;
 
 	}
@@ -112,49 +101,62 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		case 100:
 			bmp.LoadBitmapW(IDB_BITMAP1);
 			name = _T("AND게이트");
+			bitmap_name[i] = IDB_BITMAP1;
 			break;
 		case 101:
 			bmp.LoadBitmapW(IDB_BITMAP2);
+			bitmap_name[i] = IDB_BITMAP2;
 			name = _T("OR게이트");
 			break;
 		case 102:
 			bmp.LoadBitmapW(IDB_BITMAP3);
 			name = _T("NOT게이트");
+			bitmap_name[i] = IDB_BITMAP3;
 			break;
 		case 103:
 			bmp.LoadBitmapW(IDB_BITMAP4);
 			name = _T("NAND게이트");
+			bitmap_name[i] = IDB_BITMAP4;
 			break;
 		case 104:
 			bmp.LoadBitmapW(IDB_BITMAP5);
 			name = _T("NOR게이트");
+			bitmap_name[i] = IDB_BITMAP5;
 			break;
 		case 105:
 			bmp.LoadBitmapW(IDB_BITMAP6);
 			name = _T("XOR게이트");
+			bitmap_name[i] = IDB_BITMAP6;
 			break;
 		case 200:
 			bmp.LoadBitmapW(IDB_BITMAP7);
 			name = _T("D플립플롭");
+			bitmap_name[i] = IDB_BITMAP7;
 			break;
 		case 201:
 			bmp.LoadBitmapW(IDB_BITMAP8);
 			name = _T("JK플립플롭");
+			bitmap_name[i] = IDB_BITMAP8;
 			break;
 		case 202:
 			bmp.LoadBitmapW(IDB_BITMAP9);
 			name = _T("T플립플롭");
+			bitmap_name[i] = IDB_BITMAP9;
 			break;
 		}
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
-		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x + 10, point.y + bmpInfo.bmHeight , name);
+		m_ptBitmapX[i] = point.x;
+		m_ptBitmapY[i] = point.y;
+
+		pDC->BitBlt(m_ptBitmapX[i], m_ptBitmapY[i], m_ptBitmapX[i] + bmpInfo.bmWidth, m_ptBitmapY[i] + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, name);
 
 		PositionInfoX[i] = point.x;
 		PositionInfoY[i] = point.y;
 		gate_name[i] = name;
+		
 
 		i = i++;
 
@@ -213,3 +215,35 @@ void LogicView::Dump(CDumpContext& dc) const
 
 
 // LogicView 메시지 처리기입니다.
+
+
+
+void LogicView::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	// 그리기 메시지에 대해서는 CView::OnPaint()을(를) 호출하지 마십시오.
+
+	CDC* pDC = GetDC();
+	
+	CDC MemDC;
+	BITMAP bmpInfo;
+
+
+	if (listvalue != -1){
+	MemDC.CreateCompatibleDC(pDC);
+
+	
+	
+	for (i = 0; i <= current; i = i++){
+		CBitmap bmp;
+		bmp.LoadBitmapW(bitmap_name[i]);
+		bmp.GetBitmap(&bmpInfo);
+		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
+		pOldBmp = pDC->SelectObject(&bmp);
+		pDC->BitBlt(m_ptBitmapX[i], m_ptBitmapY[i], m_ptBitmapX[i] + bmpInfo.bmWidth, m_ptBitmapY[i] + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, gate_name[i]);
+		}
+	}
+	//i = i++;
+}
