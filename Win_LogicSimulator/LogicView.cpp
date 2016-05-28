@@ -164,6 +164,9 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		ReleaseDC(pDC);
 	}
+	else if (listvalue == 300) {
+
+	}
 	
 	CView::OnLButtonDown(nFlags, point);
 }

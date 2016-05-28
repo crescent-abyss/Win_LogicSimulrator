@@ -134,6 +134,9 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("T-플립플롭")) {
 		listvalue = 202;
 	}
+	else if (str == _T("1비트 입력 스위치")) {
+		listvalue = 300;
+	}
 
 	*pResult = 0;
 }
