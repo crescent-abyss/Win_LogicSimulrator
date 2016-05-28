@@ -14,7 +14,6 @@ protected:
 	// 특성입니다.
 public:
 	
-
 	// 작업입니다.
 public:
 

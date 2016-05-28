@@ -10,6 +10,9 @@ extern float PositionInfoX[];
 extern float PositionInfoY[];
 extern int i;
 extern int current;
+extern int m_ptBitmapX[];
+extern int m_ptBitmapY[];
+extern int bitmap_name[];
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

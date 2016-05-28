@@ -16,6 +16,7 @@ public:
 	void LogicView::OnLButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnRButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnMouseMove(UINT nFlags, CPoint point);
+	void LogicView::OnLButtonUP(UINT nFlags, CPoint point);
 	bool move;
 	int startx;
 	int starty;
@@ -29,6 +30,9 @@ public:
 
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnPaint();
 };
 
 
