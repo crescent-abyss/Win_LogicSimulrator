@@ -6,6 +6,9 @@
 #include "LogicView.h"
 #include "TreeView.h"
 
+CString gate_name[100];
+CString name;
+CString bitmap_name[100];
 
 // LogicView
 
@@ -52,7 +55,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		CDC MemDC;
 		BITMAP bmpInfo;
 		MemDC.CreateCompatibleDC(pDC);
-		bmp.LoadBitmapW(311);
+		bmp.LoadBitmapW(IDB_BITMAP1);
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		
@@ -69,7 +72,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 	
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x + 50, point.y + 150, _T("And게이트"));
+		pDC->TextOutW(point.x + 10, point.y + bmpInfo.bmHeight , gate_name[current]);
 		DeleteObject(bmp);
 
 
@@ -100,7 +103,6 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if(listvalue > 99 && listvalue < 210){											//게이트 그리기
 		CDC* pDC = GetDC();
-		CString name;
 		CBitmap bmp;
 		CDC MemDC;
 		BITMAP bmpInfo;
@@ -148,10 +150,12 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(point.x, point.y, point.x + bmpInfo.bmWidth, point.y + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
-		pDC->TextOutW(point.x + 50, point.y + 150, name);
+		pDC->TextOutW(point.x + 10, point.y + bmpInfo.bmHeight , name);
 
 		PositionInfoX[i] = point.x;
 		PositionInfoY[i] = point.y;
+		gate_name[i] = name;
+
 		i = i++;
 
 		MemDC.SelectObject(pOldBmp);
