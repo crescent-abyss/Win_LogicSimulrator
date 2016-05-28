@@ -98,7 +98,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		listvalue = 0;
 
 	}
-	else if(listvalue > 99 && listvalue < 110){											//게이트 그리기
+	else if(listvalue > 99 && listvalue < 210){											//게이트 그리기
 		CDC* pDC = GetDC();
 		CString name;
 		CBitmap bmp;
@@ -157,6 +157,9 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		MemDC.SelectObject(pOldBmp);
 
 		ReleaseDC(pDC);
+	}
+	else if (listvalue == 300) {
+
 	}
 	
 	CView::OnLButtonDown(nFlags, point);
