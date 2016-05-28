@@ -16,6 +16,7 @@ public:
 	void LogicView::OnLButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnRButtonDown(UINT nFlags, CPoint point);
 	void LogicView::OnMouseMove(UINT nFlags, CPoint point);
+	void LogicView::OnButtonClicked(void);
 	bool move;
 	int startx;
 	int starty;

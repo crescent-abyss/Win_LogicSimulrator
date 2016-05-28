@@ -73,7 +73,7 @@ void TreeView::OnInitialUpdate()
 	
 	tree.InsertItem(_T("1비트 입력 스위치"), 2, 2, SubTree[2], TVI_LAST);
 	
-	tree.InsertItem(_T("1비트 출력 스위치"), 2, 2, SubTree[3], TVI_LAST);
+	tree.InsertItem(_T("1비트 출력 램프"), 2, 2, SubTree[3], TVI_LAST);
 	tree.InsertItem(_T("7-세그먼트"), 2, 2, SubTree[3], TVI_LAST);
 
 	tree.InsertItem(_T("와이어"), 2, 2, SubTree[4], TVI_LAST);
@@ -136,6 +136,9 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	}
 	else if (str == _T("1비트 입력 스위치")) {
 		listvalue = 300;
+	}
+	else if (str == _T("1비트 출력 램프")) {
+		listvalue = 400;
 	}
 
 	*pResult = 0;

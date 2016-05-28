@@ -163,9 +163,24 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		ReleaseDC(pDC);
 	}
 	else if (listvalue == 300) {
+		
+		CClientDC dc(this);
+		CButton * radioButtonZero;
+		CButton * radioButtonOne;
+
+		dc.Rectangle(point.x + 15, point.y, point.x + 35, point.y + 20);
+		radioButtonZero = new CButton();
+		radioButtonOne = new CButton();
+
+		radioButtonZero->Create(_T("0"), WS_GROUP|BS_AUTORADIOBUTTON, CRect(point.x, point.y + 23, point.x + 25, point.y + 43), this, 300);
+		radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(point.x + 30, point.y + 23, point.x + 55, point.y + 43), this, 301);
+		radioButtonZero->ShowWindow(SW_SHOW);
+		radioButtonOne->ShowWindow(SW_SHOW);
 
 	}
-	
+	else if (listvalue = 400) {
+
+	}
 	CView::OnLButtonDown(nFlags, point);
 }
 
@@ -175,7 +190,10 @@ void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
 	}
 }
 
+void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)
+	int state_radio;
 
+}
 
 // LogicView 진단입니다.
 
