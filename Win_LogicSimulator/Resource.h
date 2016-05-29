@@ -26,12 +26,6 @@
 #define IDB_BITMAP9                     397
 #define IDB_BITMAP10                    407
 #define IDB_BITMAP11                    417
-#define IDB_BITMAP22                    427
-#define IDB_BITMAP23                    437
-#define IDB_BITMAP24                    447
-#define IDB_BITMAP25                    457
-#define IDB_BITMAP26                    467
-#define IDB_BITMAP27                    477
 #define IDB_BITMAP15                    487
 // Next default values for new objects
 // 
