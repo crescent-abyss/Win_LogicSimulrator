@@ -145,17 +145,29 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			break;
 		case 300:
 			bmp.LoadBitmapW(IDB_BITMAP10);
-			name = _T("");
+			name = _T("입력 스위치");
 			bitmap_name[i] = IDB_BITMAP10;
 			CButton * radioButtonZero;
 			CButton * radioButtonOne;
 			radioButtonZero = new CButton();
 			radioButtonOne = new CButton();
 
-			radioButtonZero->Create(_T("0"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 35, point.x + 25, point.y + 50), this, 300);
-			radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(point.x + 30, point.y + 33, point.x + 55, point.y + 50), this, 301);
+			radioButtonZero->Create(_T("0"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 55, point.x + 25, point.y + 70), this, 300);
+			radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(point.x + 30, point.y + 55, point.x + 55, point.y + 70), this, 301);
 			radioButtonZero->ShowWindow(SW_SHOW);
 			radioButtonOne->ShowWindow(SW_SHOW);
+
+			CButton * Clock1 = new CButton();	
+			CButton * Clock10 = new CButton();
+			CButton * Clock50 = new CButton();
+
+			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);
+			Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 50, point.y + 75, point.x + 100, point.y + 90), this, 303);
+			Clock50->Create(_T("50Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 105, point.y + 75, point.x + 155, point.y + 90), this, 304);
+			Clock1->ShowWindow(SW_SHOW);
+			Clock10->ShowWindow(SW_SHOW);
+			Clock50->ShowWindow(SW_SHOW);
+
 			break;
 			
 		}
