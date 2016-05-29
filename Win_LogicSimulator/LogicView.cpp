@@ -234,6 +234,7 @@ void LogicView::BYTE_image_rotate_90()
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)
 	int state_radio;
 
+
 }
 
 // LogicView 진단입니다.
