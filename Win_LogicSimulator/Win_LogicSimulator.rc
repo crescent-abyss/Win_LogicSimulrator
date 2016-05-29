@@ -99,6 +99,8 @@ IDB_BITMAP8             BITMAP                  "res\\JK.bmp"
 
 IDB_BITMAP9             BITMAP                  "res\\T.bmp"
 
+IDB_BITMAP10            BITMAP                  "res\\Circle.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

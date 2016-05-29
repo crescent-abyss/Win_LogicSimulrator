@@ -136,6 +136,7 @@
     <Image Include="..\..\..\..\..\Desktop\AND.bmp" />
     <Image Include="res\AND.bmp" />
     <Image Include="res\bitmap4.bmp" />
+    <Image Include="res\Circle.bmp" />
     <Image Include="res\D.bmp" />
     <Image Include="res\JK.bmp" />
     <Image Include="res\NAND.bmp" />
