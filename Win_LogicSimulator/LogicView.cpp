@@ -178,7 +178,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(point.x + 30, point.y + 23, point.x + 55, point.y + 43), this, 301);
 		radioButtonZero->ShowWindow(SW_SHOW);
 		radioButtonOne->ShowWindow(SW_SHOW);
-
+		
 	}
 	else if (listvalue = 400) {
 
@@ -187,9 +187,17 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 }
 
 void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
-	if (nFlags & MK_RBUTTON) {               //마우스 오른쪽 버튼 -> 그리기 그만
+	if (nFlags & MK_RBUTTON && listvalue != 0)                //마우스 오른쪽 버튼 -> 그리기 그만
 		listvalue = 0;
+	else {
+		//BYTE_image_rotate_90(bitmap_name[current]);
+
 	}
+}
+
+void BYTE_image_rotate_90(int bitmap_name)
+{
+	//bitmap_name[current]
 }
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)
@@ -242,6 +250,7 @@ void LogicView::OnPaint()
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
 		pDC->BitBlt(m_ptBitmapX[i], m_ptBitmapY[i], m_ptBitmapX[i] + bmpInfo.bmWidth, m_ptBitmapY[i] + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
+		//if(gate_name[i] ==NULL)
 		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, gate_name[i]);
 		}
 	}
