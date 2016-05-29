@@ -174,5 +174,23 @@
     <Image Include="res\lamp.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\XOR1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\XOR2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\XOR3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NOR1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NOR2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NOR3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
