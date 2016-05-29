@@ -148,6 +148,9 @@
     <Image Include="res\NAND2.bmp" />
     <Image Include="res\NAND3.bmp" />
     <Image Include="res\NOR.bmp" />
+    <Image Include="res\NOR1.bmp" />
+    <Image Include="res\NOR2.bmp" />
+    <Image Include="res\NOR3.bmp" />
     <Image Include="res\NOT.bmp" />
     <Image Include="res\NOT1.bmp" />
     <Image Include="res\NOT2.bmp" />
@@ -161,6 +164,9 @@
     <Image Include="res\Win_LogicSimulator.ico" />
     <Image Include="res\Win_LogicSimulatorDoc.ico" />
     <Image Include="res\XOR.bmp" />
+    <Image Include="res\XOR1.bmp" />
+    <Image Include="res\XOR2.bmp" />
+    <Image Include="res\XOR3.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
