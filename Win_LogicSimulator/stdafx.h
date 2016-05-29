@@ -10,6 +10,7 @@ extern float PositionInfoX[];
 extern float PositionInfoY[];
 extern int i;
 extern int current;
+extern int max;
 extern int m_ptBitmapX[];
 extern int m_ptBitmapY[];
 extern int bitmap_name[];

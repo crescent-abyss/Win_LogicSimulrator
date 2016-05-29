@@ -78,9 +78,17 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	
 		// TODO: Add your message handler code here and/or call default
 	if (nFlags & MK_LBUTTON && listvalue == 0){																		//클릭이 잘 안됨
-		for (int i = 0; i < PositionInfoX[i]; i++) {
-			if (PositionInfoX[i] <= point.x && point.x <= PositionInfoX[i] + 50 &&
-				PositionInfoY[i] <= point.y && point.y <= PositionInfoY[i] + 50) {
+		for (i = 0; i < max; i++) {
+			CDC* pDC = GetDC();
+			CBitmap bmp;
+			CDC MemDC;
+			BITMAP bmpInfo;
+			
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+			
+			if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
 				current = i;
 				break;
 			}
@@ -173,7 +181,8 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		gate_name[i] = name;
 		
 
-		i = i++;
+		i++;
+		max++;
 
 		MemDC.SelectObject(pOldBmp);
 
@@ -246,7 +255,7 @@ void LogicView::OnPaint()
 
 	
 	
-	for (i = 0; i <= current; i = i++){
+	for (i = 0; i < max; i = i++){
 		CBitmap bmp;
 		bmp.LoadBitmapW(bitmap_name[i]);
 		bmp.GetBitmap(&bmpInfo);
