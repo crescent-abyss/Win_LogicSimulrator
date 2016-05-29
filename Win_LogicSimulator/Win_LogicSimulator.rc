@@ -70,9 +70,7 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\Win_LogicSimulator.ico"
-
 IDR_Win_LogicSimulaTYPE ICON                    "res\\Win_LogicSimulatorDoc.ico"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -80,27 +78,19 @@ IDR_Win_LogicSimulaTYPE ICON                    "res\\Win_LogicSimulatorDoc.ico"
 //
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
-
 IDB_BITMAP1             BITMAP                  "res\\AND.bmp"
-
 IDB_BITMAP2             BITMAP                  "res\\OR.bmp"
-
 IDB_BITMAP3             BITMAP                  "res\\NOT.bmp"
-
 IDB_BITMAP4             BITMAP                  "res\\NAND.bmp"
-
 IDB_BITMAP5             BITMAP                  "res\\NOR.bmp"
-
 IDB_BITMAP6             BITMAP                  "res\\XOR.bmp"
-
 IDB_BITMAP7             BITMAP                  "res\\D.bmp"
-
 IDB_BITMAP8             BITMAP                  "res\\JK.bmp"
-
 IDB_BITMAP9             BITMAP                  "res\\T.bmp"
-
 IDB_BITMAP10            BITMAP                  "res\\Circle.bmp"
-
+IDB_BITMAP12            BITMAP                  "res\\AND1.bmp"
+IDB_BITMAP13            BITMAP                  "res\\AND2.bmp"
+IDB_BITMAP14            BITMAP                  "res\\AND3.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

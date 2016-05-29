@@ -66,7 +66,7 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 		// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	
 		Invalidate(TRUE);
-		//AfxMessageBox(_T("test"));
+		
 		
 	}
 	CView::OnLButtonUp(nFlags, point);
@@ -188,15 +188,19 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
 	if (nFlags & MK_RBUTTON && listvalue != 0)                //마우스 오른쪽 버튼 -> 그리기 그만
 		listvalue = 0;
-	else {
-		//BYTE_image_rotate_90(bitmap_name[current]);
+	else if (listvalue == 0){
+		LogicView::BYTE_image_rotate_90();
 
 	}
 }
 
-void BYTE_image_rotate_90(int bitmap_name)
-{
-	//bitmap_name[current]
+void LogicView::BYTE_image_rotate_90()
+{	
+	if (bitmap_name[current] % 10 != 0)
+		bitmap_name[current] = bitmap_name[current] + 1;
+	else
+		bitmap_name[current] = bitmap_name[current] - 3;
+		Invalidate(TRUE);
 }
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)

@@ -133,8 +133,10 @@
     <ResourceCompile Include="Win_LogicSimulator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\AND.bmp" />
     <Image Include="res\AND.bmp" />
+    <Image Include="res\AND1.bmp" />
+    <Image Include="res\AND2.bmp" />
+    <Image Include="res\AND3.bmp" />
     <Image Include="res\bitmap4.bmp" />
     <Image Include="res\Circle.bmp" />
     <Image Include="res\D.bmp" />
