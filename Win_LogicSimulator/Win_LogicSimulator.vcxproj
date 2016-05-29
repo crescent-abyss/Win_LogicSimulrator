@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -100,6 +100,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InfomationView.h" />
     <ClInclude Include="ListView.h" />
     <ClInclude Include="LogicView.h" />
     <ClInclude Include="MainFrm.h" />
@@ -141,6 +142,7 @@
     <Image Include="res\Circle.bmp" />
     <Image Include="res\D.bmp" />
     <Image Include="res\JK.bmp" />
+    <Image Include="res\lamp.bmp" />
     <Image Include="res\NAND.bmp" />
     <Image Include="res\NOR.bmp" />
     <Image Include="res\NOT.bmp" />

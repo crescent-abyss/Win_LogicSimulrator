@@ -48,6 +48,9 @@
     <ClInclude Include="LogicView.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="InfomationView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Win_LogicSimulator.cpp">
@@ -139,6 +142,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="res\AND3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\lamp.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

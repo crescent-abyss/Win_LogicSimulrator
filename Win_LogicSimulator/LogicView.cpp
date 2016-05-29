@@ -17,7 +17,6 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
-
 }
 
 LogicView::~LogicView()
@@ -30,7 +29,7 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONUP()
-
+	ON_BN_CLICKED(300, OnButtonClicked)
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
@@ -90,7 +89,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		listvalue = 0;
 
 	}
-	else if(listvalue > 99 && listvalue < 350){											//게이트 그리기
+	else if(listvalue > 99 && listvalue < 450){											//게이트 그리기
 		CDC* pDC = GetDC();
 		CBitmap bmp;
 		CDC MemDC;
@@ -157,9 +156,13 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			radioButtonZero->ShowWindow(SW_SHOW);
 			radioButtonOne->ShowWindow(SW_SHOW);
 
-			CButton * Clock1 = new CButton();	
-			CButton * Clock10 = new CButton();
-			CButton * Clock50 = new CButton();
+			CButton * Clock1;
+			CButton * Clock10;
+			CButton * Clock50;
+
+			Clock1 = new CButton();
+			Clock10 = new CButton();
+			Clock50 = new CButton();
 
 			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);
 			Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 50, point.y + 75, point.x + 100, point.y + 90), this, 303);
@@ -167,9 +170,13 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			Clock1->ShowWindow(SW_SHOW);
 			Clock10->ShowWindow(SW_SHOW);
 			Clock50->ShowWindow(SW_SHOW);
-
 			break;
-			
+
+		case 400:
+			bmp.LoadBitmapW(IDB_BITMAP15);
+			name = _T("출력 램프");
+			break;
+
 		}
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
