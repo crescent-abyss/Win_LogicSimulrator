@@ -98,6 +98,9 @@ IDB_BITMAP18            BITMAP                  "res\\OR3.bmp"
 IDB_BITMAP19            BITMAP                  "res\\NOT1.bmp"
 IDB_BITMAP20            BITMAP                  "res\\NOT2.bmp"
 IDB_BITMAP21            BITMAP                  "res\\NOT3.bmp"
+IDB_BITMAP22            BITMAP                  "res\\NAND1.bmp"
+IDB_BITMAP23            BITMAP                  "res\\NAND2.bmp"
+IDB_BITMAP24            BITMAP                  "res\\NAND3.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -162,5 +162,17 @@
     <Image Include="res\NOT3.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\NAND1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NAND2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\NAND3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\lamp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -142,7 +142,11 @@
     <Image Include="res\Circle.bmp" />
     <Image Include="res\D.bmp" />
     <Image Include="res\JK.bmp" />
+    <Image Include="res\lamp.bmp" />
     <Image Include="res\NAND.bmp" />
+    <Image Include="res\NAND1.bmp" />
+    <Image Include="res\NAND2.bmp" />
+    <Image Include="res\NAND3.bmp" />
     <Image Include="res\NOR.bmp" />
     <Image Include="res\NOT.bmp" />
     <Image Include="res\NOT1.bmp" />
