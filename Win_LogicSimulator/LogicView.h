@@ -18,6 +18,7 @@ public:
 	void LogicView::OnMouseMove(UINT nFlags, CPoint point);
 	void LogicView::OnLButtonUP(UINT nFlags, CPoint point);
 	void LogicView::OnButtonClicked(void);
+	void LogicView::BYTE_image_rotate_90();
 	bool move;
 	int startx;
 	int starty;
