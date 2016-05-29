@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONUP()
 	ON_BN_CLICKED(300, OnButtonClicked)
+	ON_BN_CLICKED(301, OnButtonClicked)
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
@@ -207,9 +208,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		ReleaseDC(pDC);
 	}
-	else if (listvalue = 400) {
 
-	}
 	CView::OnLButtonDown(nFlags, point);
 }
 
@@ -233,7 +232,7 @@ void LogicView::BYTE_image_rotate_90()
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)
 	int state_radio;
-
+	AfxMessageBox(_T("Good"));
 
 }
 
