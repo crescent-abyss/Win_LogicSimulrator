@@ -70,7 +70,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\Win_LogicSimulator.ico"
+
 IDR_Win_LogicSimulaTYPE ICON                    "res\\Win_LogicSimulatorDoc.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -78,35 +80,83 @@ IDR_Win_LogicSimulaTYPE ICON                    "res\\Win_LogicSimulatorDoc.ico"
 //
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
 IDB_BITMAP1             BITMAP                  "res\\AND.bmp"
+
 IDB_BITMAP2             BITMAP                  "res\\OR.bmp"
+
 IDB_BITMAP3             BITMAP                  "res\\NOT.bmp"
+
 IDB_BITMAP4             BITMAP                  "res\\NAND.bmp"
+
 IDB_BITMAP5             BITMAP                  "res\\NOR.bmp"
+
 IDB_BITMAP6             BITMAP                  "res\\XOR.bmp"
+
 IDB_BITMAP7             BITMAP                  "res\\D.bmp"
+
 IDB_BITMAP8             BITMAP                  "res\\JK.bmp"
+
 IDB_BITMAP9             BITMAP                  "res\\T.bmp"
+
 IDB_BITMAP10            BITMAP                  "res\\Circle.bmp"
+
 IDB_BITMAP12            BITMAP                  "res\\AND1.bmp"
+
 IDB_BITMAP13            BITMAP                  "res\\AND2.bmp"
+
 IDB_BITMAP14            BITMAP                  "res\\AND3.bmp"
+
 IDB_BITMAP15            BITMAP                  "res\\lamp.bmp"
+
 IDB_BITMAP16            BITMAP                  "res\\OR1.bmp"
+
 IDB_BITMAP17            BITMAP                  "res\\OR12.bmp"
+
 IDB_BITMAP18            BITMAP                  "res\\OR3.bmp"
+
 IDB_BITMAP19            BITMAP                  "res\\NOT1.bmp"
+
 IDB_BITMAP20            BITMAP                  "res\\NOT2.bmp"
+
 IDB_BITMAP21            BITMAP                  "res\\NOT3.bmp"
+
 IDB_BITMAP22            BITMAP                  "res\\NAND1.bmp"
+
 IDB_BITMAP23            BITMAP                  "res\\NAND2.bmp"
+
 IDB_BITMAP24            BITMAP                  "res\\NAND3.bmp"
+
 IDB_BITMAP25            BITMAP                  "res\\XOR1.bmp"
+
 IDB_BITMAP26            BITMAP                  "res\\XOR2.bmp"
+
 IDB_BITMAP27            BITMAP                  "res\\XOR3.bmp"
+
 IDB_BITMAP28            BITMAP                  "res\\NOR1.bmp"
+
 IDB_BITMAP29            BITMAP                  "res\\NOR2.bmp"
+
 IDB_BITMAP30            BITMAP                  "res\\NOR3.bmp"
+
+IDB_BITMAP31            BITMAP                  "res\\D1.bmp"
+
+IDB_BITMAP32            BITMAP                  "res\\D2.bmp"
+
+IDB_BITMAP33            BITMAP                  "res\\D3.bmp"
+
+IDB_BITMAP34            BITMAP                  "res\\JK1.bmp"
+
+IDB_BITMAP35            BITMAP                  "res\\JK2.bmp"
+
+IDB_BITMAP36            BITMAP                  "res\\JK3.bmp"
+
+IDB_BITMAP37            BITMAP                  "res\\T1.bmp"
+
+IDB_BITMAP38            BITMAP                  "res\\T2.bmp"
+
+IDB_BITMAP39            BITMAP                  "res\\T3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -14,6 +14,8 @@ extern int max;
 extern int m_ptBitmapX[];
 extern int m_ptBitmapY[];
 extern int bitmap_name[];
+extern int input_data[];
+extern int input_count;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

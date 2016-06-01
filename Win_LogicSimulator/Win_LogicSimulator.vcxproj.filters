@@ -192,5 +192,32 @@
     <Image Include="res\NOR3.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\D1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\D2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\D3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\JK1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\JK2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\JK3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\T1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\T2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\T3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

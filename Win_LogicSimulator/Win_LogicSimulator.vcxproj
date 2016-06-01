@@ -141,7 +141,13 @@
     <Image Include="res\bitmap4.bmp" />
     <Image Include="res\Circle.bmp" />
     <Image Include="res\D.bmp" />
+    <Image Include="res\D1.bmp" />
+    <Image Include="res\D2.bmp" />
+    <Image Include="res\D3.bmp" />
     <Image Include="res\JK.bmp" />
+    <Image Include="res\JK1.bmp" />
+    <Image Include="res\JK2.bmp" />
+    <Image Include="res\JK3.bmp" />
     <Image Include="res\lamp.bmp" />
     <Image Include="res\NAND.bmp" />
     <Image Include="res\NAND1.bmp" />
@@ -160,6 +166,9 @@
     <Image Include="res\OR12.bmp" />
     <Image Include="res\OR3.bmp" />
     <Image Include="res\T.bmp" />
+    <Image Include="res\T1.bmp" />
+    <Image Include="res\T2.bmp" />
+    <Image Include="res\T3.bmp" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Win_LogicSimulator.ico" />
     <Image Include="res\Win_LogicSimulatorDoc.ico" />

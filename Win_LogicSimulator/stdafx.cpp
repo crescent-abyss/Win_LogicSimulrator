@@ -14,3 +14,5 @@ int max = 0;
 int m_ptBitmapX[100] = { NULL };
 int m_ptBitmapY[100] = { NULL };
 int bitmap_name[100] = { NULL };
+int input_data[100] = { NULL };
+int input_count = 0;

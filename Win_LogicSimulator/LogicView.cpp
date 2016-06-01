@@ -31,6 +31,9 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONUP()
 	ON_BN_CLICKED(300, OnButtonClicked)
 	ON_BN_CLICKED(301, OnButtonClicked)
+	ON_BN_CLICKED(302, OnButtonClicked_CLock)
+	ON_BN_CLICKED(303, OnButtonClicked_CLock)
+	ON_BN_CLICKED(304, OnButtonClicked_CLock)
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
@@ -230,10 +233,36 @@ void LogicView::BYTE_image_rotate_90()
 		Invalidate(TRUE);
 }
 
-void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현)
-	int state_radio;
-	AfxMessageBox(_T("Good"));
+void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현) 
+	int state_ZeroOne;
+	int data;
 
+	state_ZeroOne = GetCheckedRadioButton(300, 301);
+
+	if (state_ZeroOne == 300) {
+		data = 0;
+	}
+	else {
+		data = 1;
+	}
+
+}
+
+void LogicView::OnButtonClicked_CLock(void) {			//클록 라디오 버튼 클릭 리스너
+	int state_Clock;
+	int data_Clock;
+
+	state_Clock = GetCheckedRadioButton(302, 304);
+
+	if (state_Clock == 302) {
+		data_Clock = 1;
+	}
+	else if (state_Clock == 303) {
+		data_Clock = 10;
+	}
+	else {
+		data_Clock = 50;
+	}
 }
 
 // LogicView 진단입니다.

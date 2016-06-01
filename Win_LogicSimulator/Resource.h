@@ -35,8 +35,20 @@
 #define IDB_BITMAP27                    370
 
 #define IDB_BITMAP7                     377
+#define IDB_BITMAP31                     378
+#define IDB_BITMAP32                     379
+#define IDB_BITMAP33                     380
+
 #define IDB_BITMAP8                     387
+#define IDB_BITMAP34                     388
+#define IDB_BITMAP35                     389
+#define IDB_BITMAP36                     390
+
 #define IDB_BITMAP9                     397
+#define IDB_BITMAP37                     398
+#define IDB_BITMAP38                     399
+#define IDB_BITMAP39                     400
+
 #define IDB_BITMAP10                    407
 #define IDB_BITMAP11                    417
 #define IDB_BITMAP15                    487
@@ -48,11 +60,12 @@
 //IDB_BITMAP29            BITMAP                  "res\\NOR2.bmp"
 //IDB_BITMAP30            BITMAP                  "res\\NOR3.bmp"
 
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        352
+#define _APS_NEXT_RESOURCE_VALUE        365
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           311
