@@ -20,6 +20,9 @@ public:
 	void LogicView::OnButtonClicked(void);
 	void LogicView::OnButtonClicked_CLock(void);
 	void LogicView::BYTE_image_rotate_90();
+	BOOL m_bDrawMode; // 현재 그리기 모드인지를 판단할 때 사용한다. 
+	CPoint m_ptStart, m_ptEnd; // 시작점과 끝점을 저장할 때 사용한다. 
+
 	bool move;
 	int startx;
 	int starty;

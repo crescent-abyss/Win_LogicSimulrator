@@ -10,10 +10,12 @@
 #define IDB_BITMAP12                    318
 #define IDB_BITMAP13                    319
 #define IDB_BITMAP14                    320
+
 #define IDB_BITMAP2                     327
 #define IDB_BITMAP16                    328
 #define IDB_BITMAP17                    329
 #define IDB_BITMAP18                    330
+
 #define IDB_BITMAP3                     337
 #define IDB_BITMAP19                    338
 #define IDB_BITMAP20                    339
