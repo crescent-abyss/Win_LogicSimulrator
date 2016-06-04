@@ -16,6 +16,7 @@ extern int m_ptBitmapY[];
 extern int bitmap_name[];
 extern int input_data[];
 extern int input_count;
+extern int test;
 extern int check;
 
 #ifndef _SECURE_ATL
