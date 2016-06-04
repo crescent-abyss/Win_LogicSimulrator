@@ -13,7 +13,7 @@ IMPLEMENT_DYNCREATE(TreeView, CTreeView)
 
 TreeView::TreeView()
 {
-	
+
 }
 
 TreeView::~TreeView()

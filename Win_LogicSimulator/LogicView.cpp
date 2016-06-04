@@ -1,4 +1,4 @@
-// LogicView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// LogicView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -9,6 +9,7 @@
 CString gate_name[100];
 CString name;
 
+// (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2); ì¢Œìƒ
 
 // LogicView
 
@@ -37,39 +38,419 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 END_MESSAGE_MAP()
 
 
-// LogicView ±×¸®±âÀÔ´Ï´Ù.
+// LogicView ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void LogicView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 }
 
 void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
+															
+		for (i = 0; i < max; i++) {
+			CDC* pDC = GetDC();
+			CBitmap bmp;
+			CDC MemDC;
+			BITMAP bmpInfo;
+			CClientDC dc(this);
+			CPen test_dot_tick1_pen(PS_DOT, 3, RGB(0, 255, 0));
+			// ìƒˆë¡œ ìƒì„±í•œ íœì„ DCì— ì—°ê²°í•œë‹¤.
+			CPen *p_old_pen = dc.SelectObject(&test_dot_tick1_pen);
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+			
+				if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+					m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
+					current = i;
+					
+					if (nFlags & MK_LBUTTON && listvalue == 500 && m_bDrawMode == TRUE)
+						// ì¶œë ¥ë¶€ë¶„ë§Œ ì„¤ì • ì¶œë ¥ ê²Œì´íŠ¸ í´ë¦­ì‹œ m_bDrawMode = TRUE ë¡œ ì„¤ì •
+					{
+						if (bitmap_name[i] == 317){			//andê²Œì´íŠ¸ì¼ë–„
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && 
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+								
+							}
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 110);
+								
+							}
+							
+						}
+							else if (bitmap_name[i] == 318){
+								if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] +5);
+
+								}
+								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current]+5 );
+								}
+
+							}
+							else if (bitmap_name[i] == 319){
+								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 47);
+
+								}
+								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
+
+								}
+							}
+							else if (bitmap_name[i] == 320){
+								if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 250);
+								}
+								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+									dc.SetROP2(R2_NOT);
+									dc.MoveTo(m_ptStart);
+									dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 250);
+								}
+
+							}
+						else if (bitmap_name[i] == 327){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 52);
+								
+							}
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 113);
+
+							}
+							}
+						else if (bitmap_name[i] == 328){
+							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 45, m_ptBitmapY[current] + 15);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 107, m_ptBitmapY[current] + 15);
+							}
+						}
+						else if (bitmap_name[i] == 329){
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 45);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 105);
+
+							}
+						}
+						else if (bitmap_name[i] == 330){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 53, m_ptBitmapY[current] + 260);
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 112, m_ptBitmapY[current] + 260);
+							}
+						}
+						else if (bitmap_name[i] == 337){
+						}
+						else if (bitmap_name[i] == 338){
+						}
+						else if (bitmap_name[i] == 339){
+						}
+						else if (bitmap_name[i] == 340){
+						}
+						else if (bitmap_name[i] == 347){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+							}
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+							}
+						}
+						else if (bitmap_name[i] == 348){
+							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+							}
+						}
+						else if (bitmap_name[i] == 349){
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+							}
+						}
+						else if (bitmap_name[i] == 350){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+							}
+						}
+						else if (bitmap_name[i] == 357){																					// NOR		
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+							}
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+							}
+						}
+						else if (bitmap_name[i] == 358){
+							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+							}
+						}
+						else if (bitmap_name[i] == 359){
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+							}
+						}
+						else if (bitmap_name[i] == 360){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+							}
+						}
+						else if (bitmap_name[i] == 367){																							//XOR
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+							}
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+							}
+						}
+						else if (bitmap_name[i] == 368){
+							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ì¢Œìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+							}
+						}
+						else if (bitmap_name[i] == 369){
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//ìš°ìƒ
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+							}
+						}
+						else if (bitmap_name[i] == 370){
+							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//ì¢Œí•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+							}
+							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//ìš°í•˜
+								dc.SetROP2(R2_NOT);
+								dc.MoveTo(m_ptStart);
+								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+							}
+						}
+						else if (bitmap_name[i] == 377){
+						}
+						else if (bitmap_name[i] == 378){
+						}
+						else if (bitmap_name[i] == 379){
+						}
+						else if (bitmap_name[i] == 380){
+						}
+						else if (bitmap_name[i] == 387){
+						}
+						else if (bitmap_name[i] == 388){
+						}
+						else if (bitmap_name[i] == 389){
+						}
+						else if (bitmap_name[i] == 390){
+						}
+						else if (bitmap_name[i] == 397){
+						}
+						else if (bitmap_name[i] == 398){
+						}
+						else if (bitmap_name[i] == 399){
+						}
+						else if (bitmap_name[i] == 400){
+						}
+						else if (bitmap_name[i] == 587){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 70);
+						}
+
+
+
+
+					}
+					break;
+				}
+	}
+
 	if (nFlags & MK_LBUTTON && listvalue == 0) {						
 
 		m_ptBitmapX[current] = point.x;
 		m_ptBitmapY[current] = point.y;
 		
 	}
-	
-	CWnd::OnMouseMove(nFlags, point);
 }
 
 
 void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (listvalue == 0){
-		// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	
 		Invalidate(TRUE);
 		
 		
+	}
+	else if (listvalue == 500){
+		if (m_bDrawMode == TRUE){
+			CClientDC dc(this);
+		
+			m_bDrawMode = FALSE;
+		}
 	}
 	
 	CView::OnLButtonUp(nFlags, point);
@@ -78,9 +459,156 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	CDC* pDC = GetDC();
+	CBitmap bmp;
+	CDC MemDC;
+	BITMAP bmpInfo;
+
+																											//ì¶œë ¥ë¶€ë¶„
+	if (listvalue == 500){
+
+		if (bitmap_name[i] == 317){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 327){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 337){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 347){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 357){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 367){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš° -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 377){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight/2){					// ìš°ìƒ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight ){					// ìš°í•˜ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 387){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){					// ìš°ìƒ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš°í•˜ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 397){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){					// ìš°ìƒ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// ìš°í•˜ -- ì¶œë ¥ë¹„íŠ¸
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 507){
+			m_ptStart = point;
+			m_ptEnd = m_ptBitmapY[current] + 110;
+			m_bDrawMode = TRUE;
+		}
+
+
+
+
+
+	}
+
+
+
 	
-		// TODO: Add your message handler code here and/or call default
-	if (nFlags & MK_LBUTTON && listvalue == 0){																		//Å¬¸¯ÀÌ Àß ¾ÈµÊ
+	else if (nFlags & MK_LBUTTON && listvalue == 0){                                                      //í´ë¦­ì´ ì˜ ì•ˆë¨
 		for (i = 0; i < max; i++) {
 			CDC* pDC = GetDC();
 			CBitmap bmp;
@@ -97,11 +625,15 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 	}
+	
+	else if (nFlags & MK_LBUTTON && listvalue == 500){
+		
+	}
 	else if (nFlags & MK_RBUTTON){					
 		listvalue = 0;
 
 	}
-	else if(listvalue > 99 && listvalue < 850){											//°ÔÀÌÆ® ±×¸®±â
+	else if(listvalue > 99 && listvalue < 499){											//ê²Œì´íŠ¸ ê·¸ë¦¬ê¸°
 		CDC* pDC = GetDC();
 		CBitmap bmp;
 		CDC MemDC;
@@ -111,52 +643,52 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		switch (listvalue) {
 		case 100:
 			bmp.LoadBitmapW(IDB_BITMAP1);
-			name = _T("AND°ÔÀÌÆ®");
+			name = _T("ANDê²Œì´íŠ¸");
 			bitmap_name[i] = IDB_BITMAP1;
 			break;
 		case 101:
 			bmp.LoadBitmapW(IDB_BITMAP2);
 			bitmap_name[i] = IDB_BITMAP2;
-			name = _T("OR°ÔÀÌÆ®");
+			name = _T("ORê²Œì´íŠ¸");
 			break;
 		case 102:
 			bmp.LoadBitmapW(IDB_BITMAP3);
-			name = _T("NOT°ÔÀÌÆ®");
+			name = _T("NOTê²Œì´íŠ¸");
 			bitmap_name[i] = IDB_BITMAP3;
 			break;
 		case 103:
 			bmp.LoadBitmapW(IDB_BITMAP4);
-			name = _T("NAND°ÔÀÌÆ®");
+			name = _T("NANDê²Œì´íŠ¸");
 			bitmap_name[i] = IDB_BITMAP4;
 			break;
 		case 104:
 			bmp.LoadBitmapW(IDB_BITMAP5);
-			name = _T("NOR°ÔÀÌÆ®");
+			name = _T("NORê²Œì´íŠ¸");
 			bitmap_name[i] = IDB_BITMAP5;
 			break;
 		case 105:
 			bmp.LoadBitmapW(IDB_BITMAP6);
-			name = _T("XOR°ÔÀÌÆ®");
+			name = _T("XORê²Œì´íŠ¸");
 			bitmap_name[i] = IDB_BITMAP6;
 			break;
 		case 200:
 			bmp.LoadBitmapW(IDB_BITMAP7);
-			name = _T("DÇÃ¸³ÇÃ·Ó");
+			name = _T("Dí”Œë¦½í”Œë¡­");
 			bitmap_name[i] = IDB_BITMAP7;
 			break;
 		case 201:
 			bmp.LoadBitmapW(IDB_BITMAP8);
-			name = _T("JKÇÃ¸³ÇÃ·Ó");
+			name = _T("JKí”Œë¦½í”Œë¡­");
 			bitmap_name[i] = IDB_BITMAP8;
 			break;
 		case 202:
 			bmp.LoadBitmapW(IDB_BITMAP9);
-			name = _T("TÇÃ¸³ÇÃ·Ó");
+			name = _T("Tí”Œë¦½í”Œë¡­");
 			bitmap_name[i] = IDB_BITMAP9;
 			break;
 		case 300:
 			bmp.LoadBitmapW(IDB_BITMAP10);
-			name = _T("ÀÔ·Â ½ºÀ§Ä¡");
+			name = _T("ì…ë ¥ ìŠ¤ìœ„ì¹˜");
 			bitmap_name[i] = IDB_BITMAP10;
 			CButton * radioButtonZero;
 			CButton * radioButtonOne;
@@ -176,7 +708,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			Clock10 = new CButton();
 			Clock50 = new CButton();
 
-			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);
+			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);		//ì¸í¬ë©”ì´ì…˜ ë·°ì— ë§Œë“¤ì ë„˜ë²„ë§ 1 ë¶€í„° ++
 			Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 50, point.y + 75, point.x + 100, point.y + 90), this, 303);
 			Clock50->Create(_T("50Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 105, point.y + 75, point.x + 155, point.y + 90), this, 304);
 			Clock1->ShowWindow(SW_SHOW);
@@ -186,9 +718,11 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		case 400:
 			bmp.LoadBitmapW(IDB_BITMAP15);
-			name = _T("Ãâ·Â ·¥ÇÁ");
+			name = _T("ì¶œë ¥ ë¨í”„");
+			bitmap_name[i] = IDB_BITMAP15;
 			break;
 		}
+		
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);
 		pOldBmp = pDC->SelectObject(&bmp);
@@ -209,15 +743,17 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		MemDC.SelectObject(pOldBmp);
 
 		ReleaseDC(pDC);
+		
+
 	}
 
 	CView::OnLButtonDown(nFlags, point);
 }
 
 void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
-	if (nFlags & MK_RBUTTON && listvalue != 0)                //¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ° -> ±×¸®±â ±×¸¸
+	if (nFlags & MK_RBUTTON && listvalue != 0)                //ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ -> ê·¸ë¦¬ê¸° ê·¸ë§Œ
 		listvalue = 0;
-	else if (listvalue == 0){
+	else if (listvalue == 0 && bitmap_name[i] <500){
 		LogicView::BYTE_image_rotate_90();
 
 	}
@@ -232,7 +768,7 @@ void LogicView::BYTE_image_rotate_90()
 		Invalidate(TRUE);
 }
 
-void LogicView::OnButtonClicked(void) {  //ÀÔ·Â °ª radio button (¹Ì±¸Çö) 
+void LogicView::OnButtonClicked(void) {  //ì…ë ¥ ê°’ radio button (ë¯¸êµ¬í˜„) 
 	int state_ZeroOne;
 	int data;
 
@@ -247,7 +783,7 @@ void LogicView::OnButtonClicked(void) {  //ÀÔ·Â °ª radio button (¹Ì±¸Çö)
 
 }
 
-void LogicView::OnButtonClicked_CLock(void) {			//Å¬·Ï ¶óµğ¿À ¹öÆ° Å¬¸¯ ¸®½º³Ê
+void LogicView::OnButtonClicked_CLock(void) {			//í´ë¡ ë¼ë””ì˜¤ ë²„íŠ¼ í´ë¦­ ë¦¬ìŠ¤ë„ˆ
 	int state_Clock;
 	int data_Clock;
 
@@ -264,7 +800,7 @@ void LogicView::OnButtonClicked_CLock(void) {			//Å¬·Ï ¶óµğ¿À ¹öÆ° Å¬¸¯ ¸®½º³Ê
 	}
 }
 
-// LogicView Áø´ÜÀÔ´Ï´Ù.
+// LogicView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void LogicView::AssertValid() const
@@ -281,15 +817,15 @@ void LogicView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// LogicView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// LogicView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 
 void LogicView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CView::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CView::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	CDC* pDC = GetDC();
 	
