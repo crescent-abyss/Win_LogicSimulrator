@@ -5,9 +5,14 @@
 #include "Win_LogicSimulator.h"
 #include "LogicView.h"
 #include "TreeView.h"
+#include "InfomationView.h"
+#include "MainFrm.h"
+#include "Win_LogicSimulatorDoc.h"
+#include "Win_LogicSimulatorView.h"
 
 CString gate_name[100];
 CString name;
+CMainFrame *p_frame = (CMainFrame *)AfxGetMainWnd();
 
 // (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2); 좌상
 
@@ -17,6 +22,7 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
+
 }
 
 LogicView::~LogicView()
@@ -52,7 +58,7 @@ void LogicView::OnDraw(CDC* pDC)
 void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-															
+	if (listvalue == 500){
 		for (i = 0; i < max; i++) {
 			CDC* pDC = GetDC();
 			CBitmap bmp;
@@ -65,368 +71,368 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 
 			bmp.LoadBitmapW(bitmap_name[i]);
 			bmp.GetBitmap(&bmpInfo);
-			
-				if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-					m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
-					current = i;
-					
-					if (nFlags & MK_LBUTTON && listvalue == 500 && m_bDrawMode == TRUE)
-						// 출력부분만 설정 출력 게이트 클릭시 m_bDrawMode = TRUE 로 설정
-					{
-						if (bitmap_name[i] == 317){			//and게이트일떄
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && 
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
-								
-							}
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 110);
-								
-							}
-							
-						}
-							else if (bitmap_name[i] == 318){
-								if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] +5);
 
-								}
-								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current]+5 );
-								}
+			if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
+				current = i;
 
-							}
-							else if (bitmap_name[i] == 319){
-								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-									m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 47);
-
-								}
-								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
-
-								}
-							}
-							else if (bitmap_name[i] == 320){
-								if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 250);
-								}
-								if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-									m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-									dc.SetROP2(R2_NOT);
-									dc.MoveTo(m_ptStart);
-									dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 250);
-								}
-
-							}
-						else if (bitmap_name[i] == 327){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 52);
-								
-							}
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 113);
-
-							}
-							}
-						else if (bitmap_name[i] == 328){
-							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 45, m_ptBitmapY[current] + 15);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 107, m_ptBitmapY[current] + 15);
-							}
-						}
-						else if (bitmap_name[i] == 329){
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 45);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 105);
-
-							}
-						}
-						else if (bitmap_name[i] == 330){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 53, m_ptBitmapY[current] + 260);
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 112, m_ptBitmapY[current] + 260);
-							}
-						}
-						else if (bitmap_name[i] == 337){
-						}
-						else if (bitmap_name[i] == 338){
-						}
-						else if (bitmap_name[i] == 339){
-						}
-						else if (bitmap_name[i] == 340){
-						}
-						else if (bitmap_name[i] == 347){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
-
-							}
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
-
-							}
-						}
-						else if (bitmap_name[i] == 348){
-							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
-							}
-						}
-						else if (bitmap_name[i] == 349){
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
-
-							}
-						}
-						else if (bitmap_name[i] == 350){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
-							}
-						}
-						else if (bitmap_name[i] == 357){																					// NOR		
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
-
-							}
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
-
-							}
-						}
-						else if (bitmap_name[i] == 358){
-							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
-							}
-						}
-						else if (bitmap_name[i] == 359){
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
-
-							}
-						}
-						else if (bitmap_name[i] == 360){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
-							}
-						}
-						else if (bitmap_name[i] == 367){																							//XOR
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
-
-							}
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
-
-							}
-						}
-						else if (bitmap_name[i] == 368){
-							if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
-							}
-						}
-						else if (bitmap_name[i] == 369){
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
-
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
-
-							}
-						}
-						else if (bitmap_name[i] == 370){
-							if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
-							}
-							if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-								m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
-								dc.SetROP2(R2_NOT);
-								dc.MoveTo(m_ptStart);
-								dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
-							}
-						}
-						else if (bitmap_name[i] == 377){
-						}
-						else if (bitmap_name[i] == 378){
-						}
-						else if (bitmap_name[i] == 379){
-						}
-						else if (bitmap_name[i] == 380){
-						}
-						else if (bitmap_name[i] == 387){
-						}
-						else if (bitmap_name[i] == 388){
-						}
-						else if (bitmap_name[i] == 389){
-						}
-						else if (bitmap_name[i] == 390){
-						}
-						else if (bitmap_name[i] == 397){
-						}
-						else if (bitmap_name[i] == 398){
-						}
-						else if (bitmap_name[i] == 399){
-						}
-						else if (bitmap_name[i] == 400){
-						}
-						else if (bitmap_name[i] == 587){
+				if (nFlags & MK_LBUTTON && listvalue == 500 && m_bDrawMode == TRUE)
+					// 출력부분만 설정 출력 게이트 클릭시 m_bDrawMode = TRUE 로 설정
+				{
+					if (bitmap_name[i] == 317){			//and게이트일떄
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
 							dc.SetROP2(R2_NOT);
 							dc.MoveTo(m_ptStart);
-							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 70);
+							dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+
+						}
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 110);
+
 						}
 
+					}
+					else if (bitmap_name[i] == 318){
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 5);
 
-
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 5);
+						}
 
 					}
-					break;
-				}
-	}
+					else if (bitmap_name[i] == 319){
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 47);
 
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
+
+						}
+					}
+					else if (bitmap_name[i] == 320){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 250);
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 250);
+						}
+
+					}
+					else if (bitmap_name[i] == 327){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 52);
+
+						}
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 15, m_ptBitmapY[current] + 113);
+
+						}
+					}
+					else if (bitmap_name[i] == 328){
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 45, m_ptBitmapY[current] + 15);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 107, m_ptBitmapY[current] + 15);
+						}
+					}
+					else if (bitmap_name[i] == 329){
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 45);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 260, m_ptBitmapY[current] + 105);
+
+						}
+					}
+					else if (bitmap_name[i] == 330){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 53, m_ptBitmapY[current] + 260);
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 112, m_ptBitmapY[current] + 260);
+						}
+					}
+					else if (bitmap_name[i] == 337){
+					}
+					else if (bitmap_name[i] == 338){
+					}
+					else if (bitmap_name[i] == 339){
+					}
+					else if (bitmap_name[i] == 340){
+					}
+					else if (bitmap_name[i] == 347){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+						}
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+						}
+					}
+					else if (bitmap_name[i] == 348){
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+						}
+					}
+					else if (bitmap_name[i] == 349){
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+						}
+					}
+					else if (bitmap_name[i] == 350){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+						}
+					}
+					else if (bitmap_name[i] == 357){																					// NOR		
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+						}
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+						}
+					}
+					else if (bitmap_name[i] == 358){
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+						}
+					}
+					else if (bitmap_name[i] == 359){
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+						}
+					}
+					else if (bitmap_name[i] == 360){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+						}
+					}
+					else if (bitmap_name[i] == 367){																							//XOR
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 43);
+
+						}
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 10, m_ptBitmapY[current] + 108);
+
+						}
+					}
+					else if (bitmap_name[i] == 368){
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 43, m_ptBitmapY[current] + 8);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 105, m_ptBitmapY[current] + 8);
+						}
+					}
+					else if (bitmap_name[i] == 369){
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 39);
+
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 267, m_ptBitmapY[current] + 104);
+
+						}
+					}
+					else if (bitmap_name[i] == 370){
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 270);
+						}
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){	//우하
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 110, m_ptBitmapY[current] + 270);
+						}
+					}
+					else if (bitmap_name[i] == 377){
+					}
+					else if (bitmap_name[i] == 378){
+					}
+					else if (bitmap_name[i] == 379){
+					}
+					else if (bitmap_name[i] == 380){
+					}
+					else if (bitmap_name[i] == 387){
+					}
+					else if (bitmap_name[i] == 388){
+					}
+					else if (bitmap_name[i] == 389){
+					}
+					else if (bitmap_name[i] == 390){
+					}
+					else if (bitmap_name[i] == 397){
+					}
+					else if (bitmap_name[i] == 398){
+					}
+					else if (bitmap_name[i] == 399){
+					}
+					else if (bitmap_name[i] == 400){
+					}
+					else if (bitmap_name[i] == 587){
+						dc.SetROP2(R2_NOT);
+						dc.MoveTo(m_ptStart);
+						dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 70);
+					}
+
+
+
+
+				}
+				break;
+			}
+		}
+	}
 	if (nFlags & MK_LBUTTON && listvalue == 0) {						
 
 		m_ptBitmapX[current] = point.x;
@@ -690,30 +696,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			bmp.LoadBitmapW(IDB_BITMAP10);
 			name = _T("입력 스위치");
 			bitmap_name[i] = IDB_BITMAP10;
-			CButton * radioButtonZero;
-			CButton * radioButtonOne;
-			radioButtonZero = new CButton();
-			radioButtonOne = new CButton();
-
-			radioButtonZero->Create(_T("0"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 55, point.x + 25, point.y + 70), this, 300);
-			radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(point.x + 30, point.y + 55, point.x + 55, point.y + 70), this, 301);
-			radioButtonZero->ShowWindow(SW_SHOW);
-			radioButtonOne->ShowWindow(SW_SHOW);
-
-			CButton * Clock1;
-			CButton * Clock10;
-			CButton * Clock50;
-
-			Clock1 = new CButton();
-			Clock10 = new CButton();
-			Clock50 = new CButton();
-
-			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);		//인포메이션 뷰에 만들자 넘버링 1 부터 ++
-			Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 50, point.y + 75, point.x + 100, point.y + 90), this, 303);
-			Clock50->Create(_T("50Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 105, point.y + 75, point.x + 155, point.y + 90), this, 304);
-			Clock1->ShowWindow(SW_SHOW);
-			Clock10->ShowWindow(SW_SHOW);
-			Clock50->ShowWindow(SW_SHOW);
+			
 			break;
 
 		case 400:
