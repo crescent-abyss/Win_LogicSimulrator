@@ -5,6 +5,7 @@
 #include "Win_LogicSimulator.h"
 #include "TreeView.h"
 #include "Win_LogicSimulatorDoc.h"
+#include "MainFrm.h"
 
 
 // TreeView
@@ -36,49 +37,51 @@ BOOL TreeView::PreCreateWindow(CREATESTRUCT& cs)
 
 void TreeView::OnInitialUpdate()
 {
-	CTreeView::OnInitialUpdate();
+	if (check == 0) {						//기존 트리뷰 존재하면 그리지 않는다.
+		CTreeView::OnInitialUpdate();
 
-	// 이미지 리스트 생성과 초기화
-	CImageList il;
-	il.Create(IDR_Win_LogicSimulaTYPE, 16, 1, RGB(255, 255, 255));
+		// 이미지 리스트 생성과 초기화
+		CImageList il;
+		il.Create(IDR_Win_LogicSimulaTYPE, 16, 1, RGB(255, 255, 255));
 
-	// 이미지 리스트 설정
-	CTreeCtrl& tree = GetTreeCtrl();
-	tree.SetImageList(&il, TVSIL_NORMAL);
-	il.Detach();
+		// 이미지 리스트 설정
+		CTreeCtrl& tree = GetTreeCtrl();
+		tree.SetImageList(&il, TVSIL_NORMAL);
+		il.Detach();
 
-	// 항목 추가
-	/* 1-레벨 초기화 */
-	HTREEITEM LogicTree = tree.InsertItem(_T("논리회로"), 0, 0, TVI_ROOT, TVI_LAST);
-	HTREEITEM LibTree = tree.InsertItem(_T("라이브러리"), 0, 0, TVI_ROOT, TVI_LAST);
+		// 항목 추가
+		/* 1-레벨 초기화 */
+		HTREEITEM LogicTree = tree.InsertItem(_T("논리회로"), 0, 0, TVI_ROOT, TVI_LAST);
+		HTREEITEM LibTree = tree.InsertItem(_T("라이브러리"), 0, 0, TVI_ROOT, TVI_LAST);
 
-	/* 2-레벨 초기화 */
-	HTREEITEM SubTree[5];
-	CString Tree[] = {
-		_T("논리게이트"), _T("플립플롭(FF)"), _T("입력"), _T("출력"), _T("와이어")
-	};
-	for (int i = 0; i<5; i++)
-		SubTree[i] = tree.InsertItem(Tree[i], 1, 1, LogicTree, TVI_LAST);
+		/* 2-레벨 초기화 */
+		HTREEITEM SubTree[5];
+		CString Tree[] = {
+			_T("논리게이트"), _T("플립플롭(FF)"), _T("입력"), _T("출력"), _T("와이어")
+		};
+		for (int i = 0; i < 5; i++)
+			SubTree[i] = tree.InsertItem(Tree[i], 1, 1, LogicTree, TVI_LAST);
 
-	/* 3-레벨 초기화 */
-	tree.InsertItem(_T("AND 게이트"), 2, 2, SubTree[0], TVI_LAST);
-	tree.InsertItem(_T("OR 게이트"), 2, 2, SubTree[0], TVI_LAST);
-	tree.InsertItem(_T("NOT 게이트"), 2, 2, SubTree[0], TVI_LAST);
-	tree.InsertItem(_T("NAND 게이트"), 2, 2, SubTree[0], TVI_LAST);
-	tree.InsertItem(_T("NOR 게이트"), 2, 2, SubTree[0], TVI_LAST);
-	tree.InsertItem(_T("XOR 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		/* 3-레벨 초기화 */
+		tree.InsertItem(_T("AND 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		tree.InsertItem(_T("OR 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		tree.InsertItem(_T("NOT 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		tree.InsertItem(_T("NAND 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		tree.InsertItem(_T("NOR 게이트"), 2, 2, SubTree[0], TVI_LAST);
+		tree.InsertItem(_T("XOR 게이트"), 2, 2, SubTree[0], TVI_LAST);
 
-	tree.InsertItem(_T("D-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
-	tree.InsertItem(_T("JK-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
-	tree.InsertItem(_T("T-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
-	
-	tree.InsertItem(_T("1비트 입력 스위치"), 2, 2, SubTree[2], TVI_LAST);
-	
-	tree.InsertItem(_T("1비트 출력 램프"), 2, 2, SubTree[3], TVI_LAST);
-	tree.InsertItem(_T("7-세그먼트"), 2, 2, SubTree[3], TVI_LAST);
+		tree.InsertItem(_T("D-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
+		tree.InsertItem(_T("JK-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
+		tree.InsertItem(_T("T-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
 
-	tree.InsertItem(_T("와이어"), 2, 2, SubTree[4], TVI_LAST);
-	
+		tree.InsertItem(_T("1비트 입력 스위치"), 2, 2, SubTree[2], TVI_LAST);
+
+		tree.InsertItem(_T("1비트 출력 램프"), 2, 2, SubTree[3], TVI_LAST);
+		tree.InsertItem(_T("7-세그먼트"), 2, 2, SubTree[3], TVI_LAST);
+
+		tree.InsertItem(_T("와이어"), 2, 2, SubTree[4], TVI_LAST);
+		check = 1;
+	}
 }
 
 #ifdef _DEBUG
@@ -144,8 +147,4 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 		listvalue = 500;
 	}
 	*pResult = 0;
-}
-
-void TreeView::init() {
-	AfxMessageBox(_T("OK"));
 }

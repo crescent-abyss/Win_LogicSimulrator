@@ -13,7 +13,6 @@ protected:
 
 	// 특성입니다.
 public:
-	
 	// 작업입니다.
 public:
 
@@ -21,7 +20,6 @@ public:
 public:
 
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void init();
 protected:
 	virtual void OnInitialUpdate(); // 생성 후 처음 호출되었습니다.
 

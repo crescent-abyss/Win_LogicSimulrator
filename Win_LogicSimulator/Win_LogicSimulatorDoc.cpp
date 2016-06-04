@@ -49,11 +49,11 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 
 	m_BitmapX.RemoveAll();
 	m_BitmapY.RemoveAll();
-
-	POSITION pos = GetFirstViewPosition();
-	TreeView * pTree = (TreeView *)GetNextView(pos);
-
-	pTree->init();
+	listvalue = -1;
+	for (int i = 0; i < 100; ++i) {
+		m_ptBitmapX[i] = NULL;
+		m_ptBitmapY[i] = NULL;
+	}
 
 	// TODO: 여기에 재초기화 코드를 추가합니다.
 	// SDI 문서는 이 문서를 다시 사용합니다.
