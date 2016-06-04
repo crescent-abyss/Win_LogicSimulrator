@@ -413,6 +413,11 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 						}
 						else if (bitmap_name[i] == 400){
 						}
+						else if (bitmap_name[i] == 587){
+							dc.SetROP2(R2_NOT);
+							dc.MoveTo(m_ptStart);
+							dc.LineTo(m_ptBitmapX[current] + 48, m_ptBitmapY[current] + 70);
+						}
 
 
 
@@ -485,6 +490,115 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_bDrawMode = TRUE;
 			}
 		}
+		if (bitmap_name[i] == 337){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 347){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 357){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 367){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 377){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight/2){					// 우상 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight ){					// 우하 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 387){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){					// 우상 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우하 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 397){
+
+			bmp.LoadBitmapW(bitmap_name[i]);
+			bmp.GetBitmap(&bmpInfo);
+
+			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){					// 우상 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+			else if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+				m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우하 -- 출력비트
+				m_ptStart = point;
+				m_ptEnd = m_ptBitmapY[current] + 110;
+				m_bDrawMode = TRUE;
+			}
+		}
+		if (bitmap_name[i] == 507){
+			m_ptStart = point;
+			m_ptEnd = m_ptBitmapY[current] + 110;
+			m_bDrawMode = TRUE;
+		}
+
+
 
 
 
@@ -593,7 +707,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			Clock10 = new CButton();
 			Clock50 = new CButton();
 
-			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);
+			Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(point.x, point.y + 75, point.x + 45, point.y + 90), this, 302);		//인포메이션 뷰에 만들자 넘버링 1 부터 ++
 			Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 50, point.y + 75, point.x + 100, point.y + 90), this, 303);
 			Clock50->Create(_T("50Hz"), BS_AUTORADIOBUTTON, CRect(point.x + 105, point.y + 75, point.x + 155, point.y + 90), this, 304);
 			Clock1->ShowWindow(SW_SHOW);
@@ -604,6 +718,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		case 400:
 			bmp.LoadBitmapW(IDB_BITMAP15);
 			name = _T("출력 램프");
+			bitmap_name[i] = IDB_BITMAP15;
 			break;
 
 		}
@@ -638,7 +753,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 void LogicView::OnRButtonDown(UINT nFlags, CPoint point) {
 	if (nFlags & MK_RBUTTON && listvalue != 0)                //마우스 오른쪽 버튼 -> 그리기 그만
 		listvalue = 0;
-	else if (listvalue == 0){
+	else if (listvalue == 0 && bitmap_name[i] <500){
 		LogicView::BYTE_image_rotate_90();
 
 	}
