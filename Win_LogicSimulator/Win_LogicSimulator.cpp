@@ -96,6 +96,7 @@ BOOL CWin_LogicSimulatorApp::InitInstance()
 		RUNTIME_CLASS(CWin_LogicSimulatorDoc),
 		RUNTIME_CLASS(CMainFrame),       // 주 SDI 프레임 창입니다.
 		RUNTIME_CLASS(CWin_LogicSimulatorView));
+		
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);

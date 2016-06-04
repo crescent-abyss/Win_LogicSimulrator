@@ -8,7 +8,7 @@ class TreeView : public CTreeView
 	DECLARE_DYNCREATE(TreeView)
 
 protected:
-	TreeView();           // 동적 만들기에 사용되는 protected 생성자입니다.
+	TreeView();          // 동적 만들기에 사용되는 protected 생성자입니다.
 	virtual ~TreeView();
 
 	// 특성입니다.
@@ -19,7 +19,9 @@ public:
 
 	// 재정의입니다.
 public:
+
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual void init();
 protected:
 	virtual void OnInitialUpdate(); // 생성 후 처음 호출되었습니다.
 

@@ -57,6 +57,13 @@ void CWin_LogicSimulatorView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
+	pDoc->m_BitmapX.Add(*m_ptBitmapX);
+	pDoc->m_BitmapY.Add(*m_ptBitmapY);
+
+	pDoc->SetModifiedFlag();
+
+	Invalidate();
+
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 }
 

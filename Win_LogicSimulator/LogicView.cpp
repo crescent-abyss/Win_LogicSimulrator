@@ -10,7 +10,6 @@ CString gate_name[100];
 CString name;
 
 
-
 // LogicView
 
 IMPLEMENT_DYNCREATE(LogicView, CView)
@@ -58,7 +57,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		m_ptBitmapY[current] = point.y;
 		
 	}
-
+	
 	CWnd::OnMouseMove(nFlags, point);
 }
 
@@ -72,6 +71,7 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 		
 		
 	}
+	
 	CView::OnLButtonUp(nFlags, point);
 }
 
@@ -188,7 +188,6 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			bmp.LoadBitmapW(IDB_BITMAP15);
 			name = _T("출력 램프");
 			break;
-
 		}
 		bmp.GetBitmap(&bmpInfo);
 		CBitmap *pOldBmp = (CBitmap *)MemDC.SelectObject(&bmp);

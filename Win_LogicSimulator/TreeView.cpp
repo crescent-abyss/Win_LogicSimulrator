@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Win_LogicSimulator.h"
 #include "TreeView.h"
+#include "Win_LogicSimulatorDoc.h"
 
 
 // TreeView
@@ -12,7 +13,7 @@ IMPLEMENT_DYNCREATE(TreeView, CTreeView)
 
 TreeView::TreeView()
 {
-
+	
 }
 
 TreeView::~TreeView()
@@ -80,7 +81,6 @@ void TreeView::OnInitialUpdate()
 	
 }
 
-
 #ifdef _DEBUG
 void TreeView::AssertValid() const
 {
@@ -140,6 +140,12 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("1비트 출력 램프")) {
 		listvalue = 400;
 	}
-
+	else if (str == _T("와이어")) {
+		listvalue = 500;
+	}
 	*pResult = 0;
+}
+
+void TreeView::init() {
+	AfxMessageBox(_T("OK"));
 }

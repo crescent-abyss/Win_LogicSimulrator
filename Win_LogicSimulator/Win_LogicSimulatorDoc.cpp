@@ -10,6 +10,9 @@
 #endif
 
 #include "Win_LogicSimulatorDoc.h"
+#include "TreeView.h"
+#include "Win_LogicSimulatorView.h"
+#include "MainFrm.h"
 
 #include <propkey.h>
 
@@ -30,6 +33,8 @@ END_MESSAGE_MAP()
 CWin_LogicSimulatorDoc::CWin_LogicSimulatorDoc()
 {
 	// TODO: 여기에 일회성 생성 코드를 추가합니다.
+	m_BitmapX.RemoveAll();
+	m_BitmapY.RemoveAll();
 
 }
 
@@ -42,8 +47,17 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
+	m_BitmapX.RemoveAll();
+	m_BitmapY.RemoveAll();
+
+	POSITION pos = GetFirstViewPosition();
+	TreeView * pTree = (TreeView *)GetNextView(pos);
+
+	pTree->init();
+
 	// TODO: 여기에 재초기화 코드를 추가합니다.
 	// SDI 문서는 이 문서를 다시 사용합니다.
+
 
 	return TRUE;
 }
@@ -57,10 +71,18 @@ void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
+		m_BitmapX.Add(*m_ptBitmapX);
+		m_BitmapY.Add(*m_ptBitmapY);
+		SetModifiedFlag();
+		m_BitmapX.Serialize(ar);
+		m_BitmapY.Serialize(ar);
+
 		// TODO: 여기에 저장 코드를 추가합니다.
 	}
 	else
 	{
+		m_BitmapX.Serialize(ar);
+		m_BitmapY.Serialize(ar);
 		// TODO: 여기에 로딩 코드를 추가합니다.
 	}
 }
