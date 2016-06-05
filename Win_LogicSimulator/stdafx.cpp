@@ -18,4 +18,4 @@ int input_data[100] = { NULL };
 int input_count = 0;
 int check = 0;
 int InfomationValue = 0;
-int test = 0;
+int test = 1;

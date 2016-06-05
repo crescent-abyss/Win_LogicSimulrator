@@ -77,30 +77,30 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
 	
-	m_wndSplitter.CreateStatic(this, 2, 1);
+	m_wndSplitter.CreateStatic(this, 1, 2);
 
 	// m_wndSplitter 에서 첫번째 행(0)과 첫번째 열(0)에 해당하는 창을
 	// Main_Splitter 로 한 개의 열과 2개의 열로 나눔.
 	m_wndSplitter.IdFromRowCol(0, 0);
-	Main_Splitter.CreateStatic(&m_wndSplitter, 1, 2);
+	//Main_Splitter.CreateStatic(&m_wndSplitter, 1, 2);
 
 	// m_wndSplitter 의 첫번째 행의 높이를 정함.	
 	m_wndSplitter.SetRowInfo(0, 500, 500);
 	//m_wndSplitterMain.SetRowInfo(1, 100, 100);
 
 	// Main_Splitter 의 첫번째 열의 너비를 정함.
-	Main_Splitter.SetColumnInfo(0, 200, 200);
+	//Main_Splitter.SetColumnInfo(0, 200, 200);
 	//m_wndSplitterSub.SetColumnInfo(1, 100, 100);
 
 	// 미리 정의해 놓은 class 를 분할된 영역에 생성함. 크기를 지정할 수 있다.
 	// m_wndSplitter 의 두번째 행과 첫번째 열에 해당하는 창.
-	m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(InfomationView), CSize(0, 0), pContext);			// 상태 정보창
-
+	m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);			// 상태 정보창
+	m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(LogicView), CSize(0, 0), pContext);			// 상태 정보창
 	// Main_Splitter 의 첫번째 행과 첫번째 열에 해당하는 창.
-	Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);						// 트리 리스트창
+	//Main_Splitter.CreateView(0, 0, RUNTIME_CLASS(TreeView), CSize(200, 0), pContext);						// 트리 리스트창
 
 	// Main_Splitter 의 첫번째 행과 두번째 열에 해당하는 창.
-	Main_Splitter.CreateView(0, 1, RUNTIME_CLASS(LogicView), CSize(0, 0), pContext);						// 로직 뷰
+	//Main_Splitter.CreateView(0, 1, RUNTIME_CLASS(LogicView), CSize(0, 0), pContext);						// 로직 뷰
 
 	return TRUE;
 }

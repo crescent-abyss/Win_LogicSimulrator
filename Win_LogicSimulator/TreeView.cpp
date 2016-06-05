@@ -75,6 +75,7 @@ void TreeView::OnInitialUpdate()
 		tree.InsertItem(_T("T-플립플롭"), 2, 2, SubTree[1], TVI_LAST);
 
 		tree.InsertItem(_T("1비트 입력 스위치"), 2, 2, SubTree[2], TVI_LAST);
+		tree.InsertItem(_T("클럭"), 2, 2, SubTree[2], TVI_LAST);
 
 		tree.InsertItem(_T("1비트 출력 램프"), 2, 2, SubTree[3], TVI_LAST);
 		tree.InsertItem(_T("7-세그먼트"), 2, 2, SubTree[3], TVI_LAST);
