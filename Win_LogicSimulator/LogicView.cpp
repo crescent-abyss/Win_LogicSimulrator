@@ -36,7 +36,6 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
-	
 }
 
 LogicView::~LogicView()
@@ -760,7 +759,6 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		PositionInfoY[i] = point.y;
 		gate_name[i] = name;
 		
-
 		i++;
 		max++;
 
@@ -768,6 +766,8 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		ReleaseDC(pDC);
 		
+		CDocument* pDoc = GetDocument();
+		pDoc->SetModifiedFlag();
 
 	}
 
@@ -790,6 +790,9 @@ void LogicView::BYTE_image_rotate_90()
 	else
 		bitmap_name[current] = bitmap_name[current] - 3;
 		Invalidate(TRUE);
+
+		CDocument* pDoc = GetDocument();
+		pDoc->SetModifiedFlag();
 }
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현) 
@@ -902,7 +905,11 @@ void LogicView::OnPaint()
 	
 		}
 
+	CDocument* pDoc = GetDocument();
+	pDoc->SetModifiedFlag();
+		}
 
-	}
+
+	
 	//i = i++;
 }

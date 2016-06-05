@@ -13,6 +13,7 @@
 #include "TreeView.h"
 #include "Win_LogicSimulatorView.h"
 #include "MainFrm.h"
+#include "LogicView.h"
 
 #include <propkey.h>
 
@@ -35,7 +36,6 @@ CWin_LogicSimulatorDoc::CWin_LogicSimulatorDoc()
 	// TODO: 여기에 일회성 생성 코드를 추가합니다.
 	m_BitmapX.RemoveAll();
 	m_BitmapY.RemoveAll();
-
 }
 
 CWin_LogicSimulatorDoc::~CWin_LogicSimulatorDoc()
@@ -50,10 +50,20 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 	m_BitmapX.RemoveAll();
 	m_BitmapY.RemoveAll();
 	listvalue = -1;
+
 	for (int i = 0; i < 100; ++i) {
 		m_ptBitmapX[i] = NULL;
 		m_ptBitmapY[i] = NULL;
+		bitmap_name[i] = NULL;
+		input_data[i] = NULL;
+		PositionInfoX[i] = NULL;
+		PositionInfoY[i] = NULL;
 	}
+	i = 0;
+	current = 0;
+	max = 0;
+	input_count = 0;
+	test = 0;
 
 	// TODO: 여기에 재초기화 코드를 추가합니다.
 	// SDI 문서는 이 문서를 다시 사용합니다.
@@ -69,20 +79,38 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 
 void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 {
+
 	if (ar.IsStoring())
 	{
 		m_BitmapX.Add(*m_ptBitmapX);
 		m_BitmapY.Add(*m_ptBitmapY);
-		SetModifiedFlag();
+		m_BitmapName.Add(*bitmap_name);
+		
 		m_BitmapX.Serialize(ar);
 		m_BitmapY.Serialize(ar);
-
+		m_BitmapName.Serialize(ar);
+		ar << i << current << max << input_count << test;
+		//m_GateName.Serialize(ar);
 		// TODO: 여기에 저장 코드를 추가합니다.
 	}
 	else
 	{
 		m_BitmapX.Serialize(ar);
 		m_BitmapY.Serialize(ar);
+		m_BitmapName.Serialize(ar);
+		ar >> i >> current >> max >> input_count >> test;
+		//m_GateName.Serialize(ar);
+
+		for (int i = 0; i < m_BitmapX.GetSize(); ++i) {
+			m_ptBitmapX[i] = m_BitmapX[i];
+		}
+		for (int i = 0; i < m_BitmapY.GetSize(); ++i) {
+			m_ptBitmapY[i] = m_BitmapY[i];
+		}
+		for (int i = 0; i < m_BitmapName.GetSize(); ++i) {
+			bitmap_name[i] = m_BitmapName[i];
+		}
+
 		// TODO: 여기에 로딩 코드를 추가합니다.
 	}
 }
