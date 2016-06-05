@@ -13,6 +13,9 @@
 CString gate_name[100];
 CString name;
 CMainFrame *p_frame = (CMainFrame *)AfxGetMainWnd();
+//CWin_LogicSimulatorDoc * p_Doc = (CWin_LogicSimulatorDoc *)p_frame->GetActiveDocument();
+
+
 
 // (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2); 좌상
 
@@ -22,7 +25,6 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
-
 }
 
 LogicView::~LogicView()
@@ -718,7 +720,6 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		PositionInfoX[i] = point.x;
 		PositionInfoY[i] = point.y;
 		gate_name[i] = name;
-		
 
 		i++;
 		max++;
@@ -726,7 +727,9 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		MemDC.SelectObject(pOldBmp);
 
 		ReleaseDC(pDC);
-		
+
+		CDocument* pDoc = GetDocument();
+		pDoc->SetModifiedFlag();
 
 	}
 
@@ -749,6 +752,9 @@ void LogicView::BYTE_image_rotate_90()
 	else
 		bitmap_name[current] = bitmap_name[current] - 3;
 		Invalidate(TRUE);
+
+		CDocument* pDoc = GetDocument();
+		pDoc->SetModifiedFlag();
 }
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현) 
@@ -831,6 +837,12 @@ void LogicView::OnPaint()
 		//if(gate_name[i] ==NULL)
 		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, gate_name[i]);
 		}
+
+	CDocument* pDoc = GetDocument();
+	pDoc->SetModifiedFlag();
 	}
+
+	
+	
 	//i = i++;
 }

@@ -6,6 +6,7 @@
 #pragma once
 
 #include <afxtempl.h>
+#include "LogicView.h"
 
 class CWin_LogicSimulatorDoc : public CDocument
 {
@@ -17,6 +18,8 @@ protected: // serialization에서만 만들어집니다.
 public:
 	CArray <int, int&> m_BitmapX;
 	CArray <int, int&> m_BitmapY;
+	CArray <int, int&> m_BitmapName;
+	CArray <CString, CString&> m_GateName;
 	
 // 작업입니다.
 public:

@@ -18,6 +18,7 @@ extern int input_data[];
 extern int input_count;
 extern int test;
 extern int check;
+extern int InfomationValue;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1
@@ -36,9 +37,6 @@ extern int check;
 
 #include <afxwin.h>         // MFC 핵심 및 표준 구성 요소입니다.
 #include <afxext.h>         // MFC 확장입니다.
-
-
-
 
 
 #ifndef _AFX_NO_OLE_SUPPORT
