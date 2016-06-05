@@ -99,6 +99,8 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							dc.MoveTo(m_ptStart);
 							dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							and[0] = inputvalue[0];
+							if (and[0] == 1)
+								AfxMessageBox(_T("t"));
 								
 							
 
