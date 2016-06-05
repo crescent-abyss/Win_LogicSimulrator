@@ -13,7 +13,21 @@
 CString gate_name[100];
 CString name;
 CMainFrame *p_frame = (CMainFrame *)AfxGetMainWnd();
+InfomationView* a = new InfomationView;
+CButton * Clock1;
+CButton * Clock10;
+CButton * Clock50;
+CString text;
+int textlocation[100] = { NULL };
+int j=0;
+int check1;
+int check2;
+int state_ZeroOne;
+int data[100] = { NULL };
+int and[100] = { NULL };
+int inputvalue[100] = { NULL };
 
+CString text_name[100] = { NULL };
 // (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 && m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2); 좌상
 
 // LogicView
@@ -22,7 +36,7 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
-
+	
 }
 
 LogicView::~LogicView()
@@ -35,11 +49,9 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONUP()
-	ON_BN_CLICKED(300, OnButtonClicked)
-	ON_BN_CLICKED(301, OnButtonClicked)
-	ON_BN_CLICKED(302, OnButtonClicked_CLock)
-	ON_BN_CLICKED(303, OnButtonClicked_CLock)
-	ON_BN_CLICKED(304, OnButtonClicked_CLock)
+	ON_BN_CLICKED(300 + test * 2, OnButtonClicked)
+	ON_BN_CLICKED(301 + test * 2, OnButtonClicked)
+	
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
@@ -49,6 +61,7 @@ END_MESSAGE_MAP()
 void LogicView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
+
 	ASSERT_VALID(pDoc);
 
 	// TODO: 여기에 그리기 코드를 추가합니다.
@@ -85,6 +98,9 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							dc.SetROP2(R2_NOT);
 							dc.MoveTo(m_ptStart);
 							dc.LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+							and[0] = inputvalue[0];
+								
+							
 
 						}
 						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
@@ -450,11 +466,13 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 		Invalidate(TRUE);
 		
 		
+		
+		
 	}
 	else if (listvalue == 500){
 		if (m_bDrawMode == TRUE){
 			CClientDC dc(this);
-		
+			
 			m_bDrawMode = FALSE;
 		}
 	}
@@ -465,6 +483,7 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+
 	CDC* pDC = GetDC();
 	CBitmap bmp;
 	CDC MemDC;
@@ -602,6 +621,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (bitmap_name[i] == 507){
 			m_ptStart = point;
 			m_ptEnd = m_ptBitmapY[current] + 110;
+			inputvalue[0] = data[0] ;
 			m_bDrawMode = TRUE;
 		}
 
@@ -694,10 +714,29 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			break;
 		case 300:
 			bmp.LoadBitmapW(IDB_BITMAP10);
-			name = _T("입력 스위치");
+			text.Format(_T("%d번입력"), test);
+			name = text;
 			bitmap_name[i] = IDB_BITMAP10;
 			
+			CButton * radioButtonZero;
+			CButton * radioButtonOne;
+			radioButtonZero = new CButton();
+			radioButtonOne = new CButton();
+			pDC->DrawText(text, CRect(150 + test * 70, 510, 220 + test * 70, 540), NULL);
+			
+			textlocation[j] = 150 + test * 70;
+			check1 = 300 + test * 2;
+			check2 = 301 + test * 2;
+			radioButtonZero->Create(_T("0"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(150 + test * 70, 540, 180 + test * 70, 570), this, check1);
+			radioButtonOne->Create(_T("1"), BS_AUTORADIOBUTTON, CRect(150 + test * 70, 570, 180 + test * 70, 600), this, check2);
+			radioButtonZero->ShowWindow(SW_SHOW);
+			radioButtonOne->ShowWindow(SW_SHOW);
+			radioButtonZero->SetCheck(true);
+			test = test + 1;
+			text_name[j] = text;
+			j = j++;
 			break;
+
 
 		case 400:
 			bmp.LoadBitmapW(IDB_BITMAP15);
@@ -752,18 +791,20 @@ void LogicView::BYTE_image_rotate_90()
 }
 
 void LogicView::OnButtonClicked(void) {  //입력 값 radio button (미구현) 
-	int state_ZeroOne;
-	int data;
+	
 
-	state_ZeroOne = GetCheckedRadioButton(300, 301);
+	state_ZeroOne = GetCheckedRadioButton(check1, check2);
 
-	if (state_ZeroOne == 300) {
-		data = 0;
-	}
-	else {
-		data = 1;
-	}
-
+	
+		if (state_ZeroOne == check1) {
+			data[0] = 0;
+			
+		}
+		else {
+			data[0] = 1;
+			
+		}
+	
 }
 
 void LogicView::OnButtonClicked_CLock(void) {			//클록 라디오 버튼 클릭 리스너
@@ -809,17 +850,43 @@ void LogicView::OnPaint()
 	CPaintDC dc(this); // device context for painting
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	// 그리기 메시지에 대해서는 CView::OnPaint()을(를) 호출하지 마십시오.
+	/*
+	Clock1 = new CButton;
+	Clock10 = new CButton;
+	Clock50 = new CButton;
+
+	//
+	Clock1->Create(_T("1Hz"), WS_GROUP | BS_AUTORADIOBUTTON, CRect(40, 540, 100, 560), this, 302);		//인포메이션 뷰에 만들자 넘버링 1 부터 ++
+	Clock10->Create(_T("10Hz"), BS_AUTORADIOBUTTON, CRect(40, 560, 100, 580), this, 303);
+	Clock50->Create(_T("50Hz"), BS_AUTORADIOBUTTON, CRect(40, 580, 100, 600), this, 304);
+	Clock1->ShowWindow(SW_SHOW);
+	Clock10->ShowWindow(SW_SHOW);
+	Clock50->ShowWindow(SW_SHOW);
+	
+	*/
 
 	CDC* pDC = GetDC();
-	
 	CDC MemDC;
 	BITMAP bmpInfo;
 
 
+	dc.MoveTo(0, 500);
+	dc.LineTo(2500, 500);
+	dc.Rectangle(10, 520, 120, 610);
+	dc.DrawText(_T("헤르츠설정"), CRect(25, 510, 105, 600), NULL);
+	dc.DrawText(_T("1Hz"), CRect(25, 535, 105, 625), NULL);
+	dc.DrawText(_T("10Hz"), CRect(25, 555, 105, 655), NULL);
+	dc.DrawText(_T("50Hz"), CRect(25, 575, 105, 65), NULL);
+	
+	
 	if (listvalue != -1){
 	MemDC.CreateCompatibleDC(pDC);
 
+
 	
+	
+	for (int k =0; k < j;k++)
+		pDC->DrawText(text_name[k], CRect(textlocation[k], 510,textlocation[k]+100, 540), NULL);
 	
 	for (i = 0; i < max; i = i++){
 		CBitmap bmp;
@@ -830,7 +897,10 @@ void LogicView::OnPaint()
 		pDC->BitBlt(m_ptBitmapX[i], m_ptBitmapY[i], m_ptBitmapX[i] + bmpInfo.bmWidth, m_ptBitmapY[i] + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
 		//if(gate_name[i] ==NULL)
 		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, gate_name[i]);
+	
 		}
+
+
 	}
 	//i = i++;
 }
