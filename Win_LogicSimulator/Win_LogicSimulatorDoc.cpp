@@ -75,7 +75,7 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()			//새로만들기
 void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 {
 
-	if (ar.IsStoring())
+	if (ar.IsStoring())							//파일 저장 구현
 	{
 		m_BitmapX.SetSize(max);
 		m_BitmapY.SetSize(max);
