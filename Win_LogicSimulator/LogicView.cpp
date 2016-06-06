@@ -47,6 +47,8 @@ IMPLEMENT_DYNCREATE(LogicView, CView)
 
 LogicView::LogicView()
 {
+	Clip_bitmap = 0;
+	Clip_gateName = "";
 }
 
 LogicView::~LogicView()
@@ -62,6 +64,8 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_COMMAND(ID_EDIT_UNDO, OnUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnRedo)
 	ON_COMMAND(ID_EDIT_CUT, Cut)
+	ON_COMMAND(ID_EDIT_PASTE, Paste)
+	ON_COMMAND(ID_EDIT_COPY, Copy)
 	
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
@@ -72,7 +76,7 @@ END_MESSAGE_MAP()
 void LogicView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	
+
 	ASSERT_VALID(pDoc);
 
 	// TODO: 여기에 그리기 코드를 추가합니다.
@@ -116,9 +120,9 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							LayerEndX[Layer_column] = m_ptBitmapX[current] + 5;
 							LayerEndY[Layer_column] = m_ptBitmapY[current] + 47;
 							and[0] = inputvalue[p];
+
 							
-						
-							
+
 						}
 						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
 							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
@@ -630,7 +634,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 								AfxMessageBox(_T("0값"));
 						
 					}
-				
+
 
 
 
@@ -654,7 +658,7 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (listvalue == 0){
 		// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-		
+	
 		Invalidate(TRUE);
 		
 		
@@ -679,13 +683,14 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	m_pos = point;			//잘라내기, 복사, 붙여넣기 위한 좌표값을 받는다.
 
 	CDC* pDC = GetDC();
 	CBitmap bmp;
 	CDC MemDC;
 	BITMAP bmpInfo;
 	CClientDC dc(this);
-	
+
 	if (25 <= point.x && point.x <= 105 &&
 		535 <= point.y && point.y <= 555){									// Hz_ 설정
 		CPen Pen, *oldPen;
@@ -1134,6 +1139,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		
 		i++;
 		max++;
+		Undo_max = max;
 
 		MemDC.SelectObject(pOldBmp);
 
@@ -1228,21 +1234,21 @@ void LogicView::OnPaint()
 	}
 
 
-
-
+	
+	
 	if (listvalue != -1){
 	MemDC.CreateCompatibleDC(pDC);
-	
 
+	
 	for (int k = 0; k < j; k++){
 		pDC->DrawText(text_name[k], CRect(textlocation[k], 510, textlocation[k] + 100, 540), NULL);
 		dc.Rectangle(CRect(textlocation[k] +10 , 540, textlocation[k]+40 , 570));
 		dc.DrawText(_T("1"), CRect(textlocation[k], 540, textlocation[k] + 10, 570), NULL);
 		dc.DrawText(_T("0"), CRect(textlocation[k], 570, textlocation[k] + 10, 600), NULL);
 		dc.Rectangle(CRect(textlocation[k] +10, 570, textlocation[k] + 40, 600));
-
+	
 	}
-
+	
 	if (state_switch[0] == 1){
 		dc.SetROP2(R2_NOT);
 		dc.Rectangle(160, 540, 190, 570);
@@ -1303,7 +1309,7 @@ void LogicView::OnPaint()
 		dc.SetROP2(R2_COPYPEN);
 		dc.Rectangle(160 + 280, 540, 190 + 280, 570);
 	}
-
+	
 	for (i = 0; i < max; i = i++){
 		CBitmap bmp;
 		bmp.LoadBitmapW(bitmap_name[i]);
@@ -1327,27 +1333,122 @@ void LogicView::OnPaint()
 	CDocument* pDoc = GetDocument();
 	pDoc->SetModifiedFlag();
 	
-		}
+	}
 
-
+	
 	//i = i++;
 }
 
 void LogicView::OnUndo() {			//와이어링 미구현
 	if (max != 0) {
-		Undo_max = max;
+		if (bitmap_name[max - 1] == IDB_BITMAP10) {
+			test--;
+			j--;
+		}
 		max--;
 		Invalidate();
 	}
+	else {
+		AfxMessageBox(_T("Can not Undo"));
+}
 }
 
 void LogicView::OnRedo() {			//와이어링 미구현
-	if (max <= Undo_max) {
+	if (max < Undo_max) {
 		max++;
+		if (bitmap_name[max - 1] == IDB_BITMAP10) {
+			test++;
+			j++;
+		}
 		Invalidate();
 	}
+	else {
+		AfxMessageBox(_T("Can not Redo"));
+}
 }
 
 void LogicView::Cut() {
+	for (i = 0; i < max; ++i) {
+		CDC * pDC = GetDC();
+		CBitmap bmp;
+		CDC MemDC;
+		BITMAP bmpInfo;
+		CClientDC dc(this);
+
+		bmp.LoadBitmapW(bitmap_name[i]);
+		bmp.GetBitmap(&bmpInfo);
+
+		if (m_ptBitmapX[i] <= m_pos.x && m_pos.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+			m_ptBitmapY[i] <= m_pos.y && m_pos.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
+			current = i;
+		}
+	}
+
+	Clip_bitmap = bitmap_name[current];
+	Clip_gateName = gate_name[current];
+
+	if (Clip_bitmap == IDB_BITMAP10) {
+		test--;
+		j--;
+	}
+
+	for (int j = current; j < max-1; ++j) {
+		m_ptBitmapX[j] = m_ptBitmapX[j + 1];
+		m_ptBitmapY[j] = m_ptBitmapY[j + 1];
+		bitmap_name[j] = bitmap_name[j + 1];
+		gate_name[j] = gate_name[j + 1];
+	}
 	
+	m_ptBitmapX[max - 1] = NULL;
+	m_ptBitmapY[max - 1] = NULL;
+	bitmap_name[max - 1] = NULL;
+	gate_name[max - 1] = "";
+
+	max--;
+
+	Invalidate();
+}
+
+void LogicView::Paste() {
+	if (Clip_bitmap) {
+		
+		m_ptBitmapX[max] = m_pos.x;
+		m_ptBitmapY[max] = m_pos.y;
+		bitmap_name[max] = Clip_bitmap;
+		if (bitmap_name[max] != IDB_BITMAP10) {
+			gate_name[max] = Clip_gateName;
+		}
+		else {
+			test++;
+			j++;
+			CString text;
+			text.Format(_T("%d번입력"), test);
+			gate_name[max] = text;
+		}
+		max++;
+
+		Invalidate();
+	}
+
+}
+
+void LogicView::Copy() {
+	for (i = 0; i < max; ++i) {
+		CDC * pDC = GetDC();
+		CBitmap bmp;
+		CDC MemDC;
+		BITMAP bmpInfo;
+		CClientDC dc(this);
+
+		bmp.LoadBitmapW(bitmap_name[i]);
+		bmp.GetBitmap(&bmpInfo);
+
+		if (m_ptBitmapX[i] <= m_pos.x && m_pos.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
+			m_ptBitmapY[i] <= m_pos.y && m_pos.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
+			current = i;
+		}
+		
+	}
+	Clip_bitmap = bitmap_name[current];
+	Clip_gateName = gate_name[current];
 }
