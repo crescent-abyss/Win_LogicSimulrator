@@ -15,7 +15,7 @@ CString gate_name[100];
 CString name;
 CMainFrame *p_frame = (CMainFrame *)AfxGetMainWnd();
 InfomationView* a = new InfomationView;
-CButton * Clock1;
+CButton * Clock1;		//클럭 버튼 구현
 CButton * Clock10;
 CButton * Clock50;
 CButton make_libraryBox;
