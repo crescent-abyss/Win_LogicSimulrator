@@ -25,7 +25,7 @@ public:
 public:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-
+	
 // 구현입니다.
 public:
 	virtual ~CMainFrame();

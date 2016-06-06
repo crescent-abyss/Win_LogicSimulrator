@@ -9,6 +9,7 @@
 #include "MainFrm.h"
 #include "Win_LogicSimulatorDoc.h"
 #include "Win_LogicSimulatorView.h"
+#include <afxwin.h>
 
 CString gate_name[100];
 CString name;
@@ -48,6 +49,8 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONUP()
+	ON_COMMAND(ID_EDIT_UNDO, OnUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnRedo)
 	ON_BN_CLICKED(300 + test * 2, OnButtonClicked)
 	ON_BN_CLICKED(301 + test * 2, OnButtonClicked)
 	
@@ -448,12 +451,13 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	if (nFlags & MK_LBUTTON && listvalue == 0) {						
+	if (nFlags & MK_LBUTTON && listvalue == 0) {
 
 		m_ptBitmapX[current] = point.x;
 		m_ptBitmapY[current] = point.y;
-		
+
 	}
+	
 }
 
 
@@ -910,4 +914,19 @@ void LogicView::OnPaint()
 	
 	
 	//i = i++;
+}
+
+void LogicView::OnUndo() {
+	if (max != 0) {
+		Undo_max = max;
+		max--;
+		Invalidate();
+	}
+}
+
+void LogicView::OnRedo() {
+	if (max <= Undo_max) {
+		max++;
+		Invalidate();
+	}
 }
