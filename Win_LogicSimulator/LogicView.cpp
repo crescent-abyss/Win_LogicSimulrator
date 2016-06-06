@@ -1609,7 +1609,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			bitmap_name[i] = IDB_BITMAP9;
 			break;
 		case 407:
-			bmp.LoadBitmapW(IDB_BITMAP40);
+			bmp.LoadBitmapW(IDB_BITMAP40);		//세그먼트
 			name = _T("7-세그먼트");
 			bitmap_name[i] = IDB_BITMAP40;
 			break;
