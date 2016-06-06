@@ -42,6 +42,7 @@ public:
 	afx_msg void OnPaint();
 	afx_msg void OnUndo();
 	afx_msg void OnRedo();
+	afx_msg void Cut();
 };
 
 

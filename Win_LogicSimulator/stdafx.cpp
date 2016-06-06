@@ -20,3 +20,4 @@ int check = 0;
 int InfomationValue = 0;
 int test = 0;
 int Undo_max = 0;
+int Clip_bitmap = 0;

@@ -53,6 +53,7 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONUP()
 	ON_COMMAND(ID_EDIT_UNDO, OnUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnRedo)
+	ON_COMMAND(ID_EDIT_CUT, Cut)
 	
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
@@ -1136,7 +1137,7 @@ void LogicView::OnPaint()
 	//i = i++;
 }
 
-void LogicView::OnUndo() {
+void LogicView::OnUndo() {			//와이어링 미구현
 	if (max != 0) {
 		Undo_max = max;
 		max--;
@@ -1144,9 +1145,13 @@ void LogicView::OnUndo() {
 	}
 }
 
-void LogicView::OnRedo() {
+void LogicView::OnRedo() {			//와이어링 미구현
 	if (max <= Undo_max) {
 		max++;
 		Invalidate();
 	}
+}
+
+void LogicView::Cut() {
+	
 }
