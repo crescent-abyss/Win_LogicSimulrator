@@ -61,6 +61,7 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_LBUTTONUP()
 	ON_COMMAND(ID_EDIT_UNDO, OnUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnRedo)
+	ON_COMMAND(ID_EDIT_CUT, Cut)
 	
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
@@ -489,16 +490,16 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							pDC->MoveTo(m_ptStart);
 							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							d[0] = inputvalue[p];
-						}
+					}
 					}
 					else if (bitmap_name[i] == 378){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
 							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
 							pDC->SetROP2(R2_NOT);
-							pDC->MoveTo(m_ptStart);
-							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+						pDC->MoveTo(m_ptStart);
+						pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							d[0] = inputvalue[p];
-						}
+					}
 					}
 
 					else if (bitmap_name[i] == 379){
@@ -1302,7 +1303,7 @@ void LogicView::OnPaint()
 		dc.SetROP2(R2_COPYPEN);
 		dc.Rectangle(160 + 280, 540, 190 + 280, 570);
 	}
-	
+
 	for (i = 0; i < max; i = i++){
 		CBitmap bmp;
 		bmp.LoadBitmapW(bitmap_name[i]);
@@ -1314,7 +1315,7 @@ void LogicView::OnPaint()
 		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, gate_name[i]);
 	
 		}
-	
+
 		CPen Pen, *oldPen;
 		Pen.CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
 		oldPen = pDC->SelectObject(&Pen);//old에 반드시 넣어준다.
@@ -1332,7 +1333,7 @@ void LogicView::OnPaint()
 	//i = i++;
 }
 
-void LogicView::OnUndo() {
+void LogicView::OnUndo() {			//와이어링 미구현
 	if (max != 0) {
 		Undo_max = max;
 		max--;
@@ -1340,9 +1341,13 @@ void LogicView::OnUndo() {
 	}
 }
 
-void LogicView::OnRedo() {
+void LogicView::OnRedo() {			//와이어링 미구현
 	if (max <= Undo_max) {
 		max++;
 		Invalidate();
 	}
+}
+
+void LogicView::Cut() {
+	
 }
