@@ -102,7 +102,7 @@ void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 		// TODO: 여기에 저장 코드를 추가합니다.
 	}
 	else
-	{
+	{											//파일 열기 구현
 
 		for (int i = 0; i < 100; ++i) {
 			m_ptBitmapX[i] = NULL;
