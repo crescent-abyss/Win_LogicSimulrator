@@ -1862,7 +1862,7 @@ void LogicView::OnPaint()
 	//i = i++;
 }
 
-void LogicView::OnUndo() {			//와이어링 미구현 Undo
+void LogicView::OnUndo() {			//와이어링 미구현 Undo 
 	if (max != 0) {
 		if (bitmap_name[max - 1] == IDB_BITMAP10) {
 			test--;
@@ -1890,7 +1890,7 @@ void LogicView::OnRedo() {			//와이어링 미구현	Redo
 }
 }
 
-void LogicView::Cut() {								//잘라내기
+void LogicView::Cut() {								//잘라내기 와이어링
 	for (i = 0; i < max; ++i) {
 		CDC * pDC = GetDC();
 		CBitmap bmp;
