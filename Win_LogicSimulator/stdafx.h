@@ -6,8 +6,10 @@
 #pragma once
 
 extern int listvalue;			// 선택된 논리게이트 종류 판별 *전역변수
-extern float PositionInfoX[];
-extern float PositionInfoY[];
+extern int LayerX[];
+extern int LayerY[];
+extern int LayerEndX[];
+extern int LayerEndY[];
 extern int i;
 extern int current;
 extern int max;
@@ -20,6 +22,7 @@ extern int test;
 extern int check;
 extern int InfomationValue;
 extern int Undo_max;
+extern int Layer_column;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

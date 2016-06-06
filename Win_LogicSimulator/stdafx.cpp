@@ -6,8 +6,10 @@
 #include "stdafx.h"
 
 int listvalue = -1;			// �ʱⰪ
-float PositionInfoX[100] = { NULL };
-float PositionInfoY[100] = { NULL };
+int LayerX[100] = { NULL };
+int LayerY[100] = { NULL };
+int LayerEndX[] = { NULL };
+int LayerEndY[] = { NULL };
 int i = 0;
 int current = 0;
 int max = 0;
@@ -20,3 +22,4 @@ int check = 0;
 int InfomationValue = 0;
 int test = 0;
 int Undo_max = 0;
+int Layer_column = 0;
