@@ -1932,7 +1932,7 @@ void LogicView::Cut() {								//잘라내기
 	Invalidate();
 }
 
-void LogicView::Paste() {
+void LogicView::Paste() {						//붙여넣기
 	if (Clip_bitmap) {
 		
 		m_ptBitmapX[max] = m_pos.x;
