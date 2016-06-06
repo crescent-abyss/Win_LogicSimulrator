@@ -20,7 +20,6 @@ extern int test;
 extern int check;
 extern int InfomationValue;
 extern int Undo_max;
-extern int Clip_bitmap;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

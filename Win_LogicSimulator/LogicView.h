@@ -27,6 +27,9 @@ public:
 	bool move;
 	int startx;
 	int starty;
+	CPoint m_pos;			//ÁÂÇ¥°ª
+	CString Clip_gateName;
+	int Clip_bitmap;
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -43,6 +46,8 @@ public:
 	afx_msg void OnUndo();
 	afx_msg void OnRedo();
 	afx_msg void Cut();
+	afx_msg void Paste();
+	afx_msg void Copy();
 };
 
 
