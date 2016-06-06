@@ -117,6 +117,8 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							pDC->SetROP2(R2_NOT);
 							pDC->MoveTo(m_ptStart);
 							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+							LayerEndX[Layer_column] = m_ptBitmapX[current] + 5;
+							LayerEndY[Layer_column] = m_ptBitmapY[current] + 47;
 							and[0] = inputvalue[p];
 
 							
@@ -127,6 +129,8 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							pDC->SetROP2(R2_NOT);
 							pDC->MoveTo(m_ptStart);
 							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 110);
+							LayerEndX[Layer_column] = m_ptBitmapX[current] + 5;
+							LayerEndY[Layer_column] = m_ptBitmapY[current] + 110;
 							and[1] = inputvalue[p];
 
 							
@@ -274,7 +278,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth)
 							pDC->SetROP2(R2_NOT);
 						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 162, m_ptBitmapY[current] + 60);
+						pDC->LineTo(m_ptBitmapX[current] + 262, m_ptBitmapY[current] + 60);
 							not[0] = inputvalue[p];
 					}
 					else if (bitmap_name[i] == 340){
@@ -484,18 +488,24 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 						}
 					}
 					else if (bitmap_name[i] == 377){
-						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)	//좌상
+						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							d[0] = inputvalue[p];
+					}
 					}
 					else if (bitmap_name[i] == 378){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)	//우상
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
 							pDC->SetROP2(R2_NOT);
 						pDC->MoveTo(m_ptStart);
 						pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							d[0] = inputvalue[p];
 					}
+					}
+
 					else if (bitmap_name[i] == 379){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
 							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight)
@@ -587,6 +597,8 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 					else if (bitmap_name[i] == 397){
 						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
 							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)	//좌상
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							t[0] = inputvalue[p];
 					}
 					else if (bitmap_name[i] == 398){
@@ -657,7 +669,10 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 		if (m_bDrawMode == TRUE){
 			CClientDC dc(this);
 			p = p + 1;
+			
 			m_bDrawMode = FALSE;
+			Invalidate(FALSE);
+			
 																														// 비트맵위에서 마우스 떌시 p = p+1; 해주기로
 		}
 	}
@@ -826,6 +841,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
 				m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){					// 우 -- 출력비트
 				m_ptStart = point;
+			
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
 				int result;
@@ -964,14 +980,26 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
 					m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight) {
 					current = i;
-					if (text_name[i] == _T("0번입력"))
+					if (text_name[i] == _T("0번입력")){
 						inputvalue[p] = data[0];
-					else if (text_name[i] == _T("1번입력"))
+						LayerX[Layer_column] = point.x;
+						LayerY[Layer_column] = point.y;
+					}
+					else if (text_name[i] == _T("1번입력")){
 						inputvalue[p] = data[1];
-					else if (text_name[i] == _T("2번입력"))
+						LayerX[Layer_column] = point.x;
+						LayerY[Layer_column] = point.y;
+					}
+					else if (text_name[i] == _T("2번입력")){
 						inputvalue[p] = data[2];
-					else if (text_name[i] == _T("3번입력"))
+						LayerX[0] = point.x;
+						LayerY[0] = point.y;
+					}
+					else if (text_name[i] == _T("3번입력")){
 						inputvalue[p] = data[3];
+						LayerX[0] = point.x;
+						LayerY[0] = point.y;
+					}
 				}
 			}
 		}
@@ -1106,8 +1134,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 		pDC->BitBlt(m_ptBitmapX[i], m_ptBitmapY[i], m_ptBitmapX[i] + bmpInfo.bmWidth, m_ptBitmapY[i] + bmpInfo.bmHeight, &MemDC, 0, 0, SRCCOPY);
 		pDC->TextOutW(m_ptBitmapX[i] + 10, m_ptBitmapY[i] + bmpInfo.bmHeight, name);
 
-		PositionInfoX[i] = point.x;
-		PositionInfoY[i] = point.y;
+		
 		gate_name[i] = name;
 		
 		i++;
@@ -1295,6 +1322,14 @@ void LogicView::OnPaint()
 	
 		}
 
+		CPen Pen, *oldPen;
+		Pen.CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
+		oldPen = pDC->SelectObject(&Pen);//old에 반드시 넣어준다.
+
+		pDC->MoveTo(LayerX[0], LayerY[0]);
+		pDC->LineTo(LayerEndX[0], LayerEndY[0]);
+		
+	
 	CDocument* pDoc = GetDocument();
 	pDoc->SetModifiedFlag();
 	
@@ -1315,7 +1350,7 @@ void LogicView::OnUndo() {			//와이어링 미구현
 	}
 	else {
 		AfxMessageBox(_T("Can not Undo"));
-	}
+}
 }
 
 void LogicView::OnRedo() {			//와이어링 미구현
@@ -1329,7 +1364,7 @@ void LogicView::OnRedo() {			//와이어링 미구현
 	}
 	else {
 		AfxMessageBox(_T("Can not Redo"));
-	}
+}
 }
 
 void LogicView::Cut() {
@@ -1363,7 +1398,7 @@ void LogicView::Cut() {
 		bitmap_name[j] = bitmap_name[j + 1];
 		gate_name[j] = gate_name[j + 1];
 	}
-
+	
 	m_ptBitmapX[max - 1] = NULL;
 	m_ptBitmapY[max - 1] = NULL;
 	bitmap_name[max - 1] = NULL;

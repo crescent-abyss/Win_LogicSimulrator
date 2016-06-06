@@ -53,8 +53,6 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 		m_ptBitmapY[i] = NULL;
 		bitmap_name[i] = NULL;
 		input_data[i] = NULL;
-		PositionInfoX[i] = NULL;
-		PositionInfoY[i] = NULL;
 	}
 	i = 0;
 	current = 0;
