@@ -1641,7 +1641,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			break;
 
 
-		case 400:									//출력 램프
+		case 400:									//출력 램프 및 라벨 설정
 			bmp.LoadBitmapW(IDB_BITMAP15);
 			name = _T("출력 램프");
 			bitmap_name[i] = IDB_BITMAP15;
