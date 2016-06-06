@@ -260,33 +260,36 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 						}
 					}
 					else if (bitmap_name[i] == 337){
-						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 )
+						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2){
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 12, m_ptBitmapY[current] + 60);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 12, m_ptBitmapY[current] + 60);
 							not[0] = inputvalue[p];
-							
+						}
 					}
 					else if (bitmap_name[i] == 338){
-						if (m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)
+						if (m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 52, m_ptBitmapY[current] + 10);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 52, m_ptBitmapY[current] + 10);
 							not[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 339){
-						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth)
+						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth){
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 262, m_ptBitmapY[current] + 60);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 262, m_ptBitmapY[current] + 60);
 							not[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 340){
-						if(m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight)
+						if (m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 62, m_ptBitmapY[current] + 210);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 62, m_ptBitmapY[current] + 210);
 							not[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 347){
 						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
@@ -508,16 +511,17 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 
 					else if (bitmap_name[i] == 379){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight)
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
 							d[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 380){
 						if(m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
 							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight)
-							
 							d[0] = inputvalue[p];
 					}
 					else if (bitmap_name[i] == 387){
@@ -596,26 +600,30 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 					}
 					else if (bitmap_name[i] == 397){
 						if (m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
-							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)	//좌상
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//좌상
 							pDC->MoveTo(m_ptStart);
 							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							t[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 398){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2)	//우상
+							m_ptBitmapY[i] <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight / 2){	//우상
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
-						t[0] = inputvalue[p];
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
+							t[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 399){
 						if (m_ptBitmapX[i] + bmpInfo.bmWidth / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth &&
-							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight)
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){
+
 							pDC->SetROP2(R2_NOT);
-						pDC->MoveTo(m_ptStart);
-						pDC->LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
-						t[0] = inputvalue[p];
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current] + 250, m_ptBitmapY[current] + 110);
+							t[0] = inputvalue[p];
+						}
 					}
 					else if (bitmap_name[i] == 400){
 						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
@@ -623,7 +631,490 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 
 							t[0] = inputvalue[p];
 					}
+					else if (bitmap_name[i] == 407){
+					if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+						m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] +20+ (bmpInfo.bmHeight / 7) * 2) ){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP42;
+								Invalidate(TRUE);
+							}
+							else if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP41;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] +20+ (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP43;
+								Invalidate(TRUE);
+							}
+							
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7)*3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP45;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP49;
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 410){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP42;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP43;
+								Invalidate(TRUE);
+							}
 
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP45;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP49;
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 411){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP41;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP44;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP47;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP50;
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 412){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP44;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP41;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP47;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 413){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP43;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP42;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP48;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 414){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP46;
+								Invalidate(TRUE);
+							}
+							
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP47;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP41;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 415){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP45;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP48;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 416){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP48;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP45;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP43;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 417){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP47;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP46;
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP44;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 418){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 1){
+								bitmap_name[i] = IDB_BITMAP50;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+								
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP41;
+								Invalidate(TRUE);
+							}
+						}
+					}
+					else if (bitmap_name[i] == 419){
+						if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + bmpInfo.bmHeight / 7 <= point.y && point.y <= m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2)){
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 45);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP49;
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + 20 + (bmpInfo.bmHeight / 7) * 2 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 82);
+							if (inputvalue[p] == 1){
+
+								Invalidate(TRUE);
+							}
+
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 3 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
+							if (inputvalue[p] == 1){
+
+								Invalidate(TRUE);
+							}
+						}
+						else if ((m_ptBitmapX[i] <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
+							m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 5 <= point.y && point.y <= m_ptBitmapY[i] + (bmpInfo.bmHeight / 7) * 6)){	//좌상
+							pDC->SetROP2(R2_NOT);
+							pDC->MoveTo(m_ptStart);
+							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 150);
+							if (inputvalue[p] == 0){
+								bitmap_name[i] = IDB_BITMAP42;
+								Invalidate(TRUE);
+							}
+						}
+					}
 					else if (bitmap_name[i] == 517){
 						pDC->SetROP2(R2_NOT);
 						pDC->MoveTo(m_ptStart);
@@ -671,7 +1162,7 @@ void LogicView::OnLButtonUp(UINT nFlags, CPoint point)
 			p = p + 1;
 			
 			m_bDrawMode = FALSE;
-			Invalidate(FALSE);
+			
 			
 																														// 비트맵위에서 마우스 떌시 p = p+1; 해주기로
 		}
@@ -860,6 +1351,9 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_ptStart = point;
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
+				int result;
+				result = or[0] | or[1];
+				inputvalue[p] = result;
 			}
 		}
 		if (bitmap_name[i] == 337){
@@ -872,6 +1366,12 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_ptStart = point;
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
+				int result;
+				if (not[0] == 1)
+					result = 0;
+				else
+					result = 1;
+				inputvalue[p] = result;
 			}
 		}
 		if (bitmap_name[i] == 347){
@@ -884,6 +1384,14 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_ptStart = point;
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
+				int result;
+				result = nand[0] & nand[1];
+				if (result == 1)
+					result = 0;
+				else
+					result = 1;
+				inputvalue[p] = result;
+
 			}
 		}
 		if (bitmap_name[i] == 357){
@@ -896,6 +1404,13 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_ptStart = point;
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
+				int result;
+				result = nor[0] | nor[1];
+				if (result == 1)
+					result = 0;
+				else
+					result = 1;
+				inputvalue[p] = result;
 			}
 		}
 		if (bitmap_name[i] == 367){
@@ -908,6 +1423,9 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 				m_ptStart = point;
 				m_ptEnd = m_ptBitmapY[current] + 110;
 				m_bDrawMode = TRUE;
+				int result;
+				result = xor[0] ^ xor[1];
+				inputvalue[p] = result;
 			}
 		}
 		if (bitmap_name[i] == 377){
@@ -1090,6 +1608,11 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			name = _T("T플립플롭");
 			bitmap_name[i] = IDB_BITMAP9;
 			break;
+		case 407:
+			bmp.LoadBitmapW(IDB_BITMAP40);
+			name = _T("7-세그먼트");
+			bitmap_name[i] = IDB_BITMAP40;
+			break;
 		case 300:
 			bmp.LoadBitmapW(IDB_BITMAP10);
 			text.Format(_T("%d번입력"), test);
@@ -1123,6 +1646,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 			name = _T("출력 램프");
 			bitmap_name[i] = IDB_BITMAP15;
 			break;
+	
 		}
 		
 		bmp.GetBitmap(&bmpInfo);
@@ -1326,8 +1850,8 @@ void LogicView::OnPaint()
 		Pen.CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
 		oldPen = pDC->SelectObject(&Pen);//old에 반드시 넣어준다.
 
-		pDC->MoveTo(LayerX[0], LayerY[0]);
-		pDC->LineTo(LayerEndX[0], LayerEndY[0]);
+		//pDC->MoveTo(LayerX[0], LayerY[0]);
+		//pDC->LineTo(LayerEndX[0], LayerEndY[0]);
 		
 	
 	CDocument* pDoc = GetDocument();

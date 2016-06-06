@@ -144,6 +144,9 @@ void TreeView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	else if (str == _T("1비트 출력 램프")) {
 		listvalue = 400;
 	}
+	else if (str == _T("7-세그먼트")) {
+		listvalue = 407;
+	}
 	else if (str == _T("와이어")) {
 		listvalue = 500;
 	}
