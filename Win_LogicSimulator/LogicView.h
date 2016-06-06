@@ -48,6 +48,8 @@ public:
 	afx_msg void Cut();
 	afx_msg void Paste();
 	afx_msg void Copy();
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnClickedPush();
 };
 
 

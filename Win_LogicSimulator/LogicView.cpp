@@ -18,9 +18,9 @@ InfomationView* a = new InfomationView;
 CButton * Clock1;
 CButton * Clock10;
 CButton * Clock50;
+CButton make_libraryBox;
 CString text;
 int textlocation[100] = { NULL };
-int j=0;
 int check1;
 int check2;
 int state_switch[100] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
@@ -66,8 +66,9 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_COMMAND(ID_EDIT_CUT, Cut)
 	ON_COMMAND(ID_EDIT_PASTE, Paste)
 	ON_COMMAND(ID_EDIT_COPY, Copy)
-	
+	ON_COMMAND(680, OnClickedPush)
 	ON_WM_PAINT()
+	ON_WM_CREATE()
 END_MESSAGE_MAP()
 
 
@@ -80,7 +81,6 @@ void LogicView::OnDraw(CDC* pDC)
 	ASSERT_VALID(pDoc);
 
 	// TODO: 여기에 그리기 코드를 추가합니다.
-	
 }
 
 void LogicView::OnMouseMove(UINT nFlags, CPoint point)
@@ -1732,7 +1732,6 @@ void LogicView::OnPaint()
 	CDC MemDC;
 	BITMAP bmpInfo;
 
-
 	dc.MoveTo(0, 500);
 	dc.LineTo(2500, 500);
 	dc.Rectangle(10, 520, 120, 610);
@@ -1953,7 +1952,6 @@ void LogicView::Paste() {
 
 		Invalidate();
 	}
-
 }
 
 void LogicView::Copy() {
@@ -1975,4 +1973,30 @@ void LogicView::Copy() {
 	}
 	Clip_bitmap = bitmap_name[current];
 	Clip_gateName = gate_name[current];
+}
+
+int LogicView::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CView::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
+
+	make_libraryBox.Create(_T("라이브러리 만들기"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(0, 0, 140, 20), this, 680);
+	return 0;
+}
+void LogicView::OnClickedPush() {
+	int Lib_X[100];
+	int Lib_Y[100];
+	int Lib_bitmap[100];
+	CString Lib_gateName[100];
+	int Lib_max = max;
+
+	for (int k = 0; k < max; ++k) {
+		Lib_X[k] = m_ptBitmapX[k];
+		Lib_Y[k] = m_ptBitmapY[k];
+		Lib_bitmap[k] = bitmap_name[k];
+		Lib_gateName[k] = gate_name[k];
+	}
+
 }
