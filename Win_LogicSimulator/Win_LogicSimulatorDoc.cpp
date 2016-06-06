@@ -41,7 +41,7 @@ CWin_LogicSimulatorDoc::~CWin_LogicSimulatorDoc()
 {
 }
 
-BOOL CWin_LogicSimulatorDoc::OnNewDocument()
+BOOL CWin_LogicSimulatorDoc::OnNewDocument()			//새로만들기
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
