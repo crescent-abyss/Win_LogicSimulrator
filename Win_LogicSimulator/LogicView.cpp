@@ -1553,7 +1553,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (nFlags & MK_RBUTTON){					
 		listvalue = 0;
-	//	
+	
 	}
 	else if(listvalue > 99 && listvalue < 499){											//게이트 그리기
 		CDC* pDC = GetDC();
