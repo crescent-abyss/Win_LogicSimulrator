@@ -52,8 +52,7 @@
 #define IDB_BITMAP39                     400
 
 #define IDB_BITMAP10                    507
-#define IDB_BITMAP11                    517
-#define IDB_BITMAP15                    587
+#define IDB_BITMAP15                    517
 
 //IDB_BITMAP25            BITMAP                  "res\\XOR1.bmp"
 //IDB_BITMAP26            BITMAP                  "res\\XOR2.bmp"
