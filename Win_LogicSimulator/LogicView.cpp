@@ -9,6 +9,7 @@
 #include "MainFrm.h"
 #include "Win_LogicSimulatorDoc.h"
 #include "Win_LogicSimulatorView.h"
+#include <afxwin.h>
 
 CString gate_name[100];
 CString name;
@@ -58,8 +59,8 @@ BEGIN_MESSAGE_MAP(LogicView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONUP()
-	
-
+	ON_COMMAND(ID_EDIT_UNDO, OnUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnRedo)
 	
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
@@ -93,7 +94,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 			oldPen = pDC->SelectObject(&Pen);//old에 반드시 넣어준다.
 			
 			// 새로 생성한 펜을 DC에 연결한다.
-			
+
 
 			bmp.LoadBitmapW(bitmap_name[i]);
 			bmp.GetBitmap(&bmpInfo);
@@ -113,8 +114,8 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							pDC->LineTo(m_ptBitmapX[current] + 5, m_ptBitmapY[current] + 47);
 							and[0] = inputvalue[p];
 							
+						
 							
-
 						}
 						if (m_ptBitmapX[i] / 2 <= point.x && point.x <= m_ptBitmapX[i] + bmpInfo.bmWidth / 2 &&
 							m_ptBitmapY[i] + bmpInfo.bmHeight / 2 <= point.y && point.y <= m_ptBitmapY[i] + bmpInfo.bmHeight){//좌하
@@ -619,7 +620,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 				
 
 
-				
+
 
 				}
 				break;
@@ -632,7 +633,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 		m_ptBitmapY[current] = point.y;
 		
 	}
-
+	
 }
 
 
@@ -1294,4 +1295,19 @@ void LogicView::OnPaint()
 
 
 	//i = i++;
+}
+
+void LogicView::OnUndo() {
+	if (max != 0) {
+		Undo_max = max;
+		max--;
+		Invalidate();
+	}
+}
+
+void LogicView::OnRedo() {
+	if (max <= Undo_max) {
+		max++;
+		Invalidate();
+	}
 }

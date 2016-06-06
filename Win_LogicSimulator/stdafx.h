@@ -19,6 +19,7 @@ extern int input_count;
 extern int test;
 extern int check;
 extern int InfomationValue;
+extern int Undo_max;
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1

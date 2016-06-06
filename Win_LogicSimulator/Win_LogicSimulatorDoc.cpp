@@ -12,9 +12,10 @@
 #include "Win_LogicSimulatorDoc.h"
 #include "TreeView.h"
 #include "Win_LogicSimulatorView.h"
-#include "MainFrm.h"
 #include "LogicView.h"
-
+#include "MainFrm.h"
+#include <afxtempl.h>
+#include <afxcoll.h>
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -34,8 +35,6 @@ END_MESSAGE_MAP()
 CWin_LogicSimulatorDoc::CWin_LogicSimulatorDoc()
 {
 	// TODO: 여기에 일회성 생성 코드를 추가합니다.
-	m_BitmapX.RemoveAll();
-	m_BitmapY.RemoveAll();
 }
 
 CWin_LogicSimulatorDoc::~CWin_LogicSimulatorDoc()
@@ -47,8 +46,6 @@ BOOL CWin_LogicSimulatorDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	m_BitmapX.RemoveAll();
-	m_BitmapY.RemoveAll();
 	listvalue = -1;
 
 	for (int i = 0; i < 100; ++i) {
@@ -82,23 +79,48 @@ void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 
 	if (ar.IsStoring())
 	{
-		m_BitmapX.Add(*m_ptBitmapX);
-		m_BitmapY.Add(*m_ptBitmapY);
-		m_BitmapName.Add(*bitmap_name);
+		m_BitmapX.SetSize(max);
+		m_BitmapY.SetSize(max);
+		m_BitmapName.SetSize(max);
 		
+		ar << i << current << max << input_count << test;
+
+		for (int i = 0; i < m_BitmapX.GetSize(); ++i) {
+			m_BitmapX[i] = m_ptBitmapX[i];
+		}
+		for (int i = 0; i < m_BitmapY.GetSize(); ++i) {
+			m_BitmapY[i] = m_ptBitmapY[i];
+		}
+		for (int i = 0; i < m_BitmapName.GetSize(); ++i) {
+			m_BitmapName[i] = bitmap_name[i];
+		}
+
 		m_BitmapX.Serialize(ar);
 		m_BitmapY.Serialize(ar);
 		m_BitmapName.Serialize(ar);
-		ar << i << current << max << input_count << test;
+		
+
 		//m_GateName.Serialize(ar);
 		// TODO: 여기에 저장 코드를 추가합니다.
 	}
 	else
 	{
+
+		for (int i = 0; i < 100; ++i) {
+			m_ptBitmapX[i] = NULL;
+			m_ptBitmapY[i] = NULL;
+			bitmap_name[i] = NULL;
+		}
+		ar >> i >> current >> max >> input_count >> test;
+
+		m_BitmapX.SetSize(max);
+		m_BitmapY.SetSize(max);
+		m_BitmapName.SetSize(max);
+
 		m_BitmapX.Serialize(ar);
 		m_BitmapY.Serialize(ar);
 		m_BitmapName.Serialize(ar);
-		ar >> i >> current >> max >> input_count >> test;
+		
 		//m_GateName.Serialize(ar);
 
 		for (int i = 0; i < m_BitmapX.GetSize(); ++i) {
@@ -110,7 +132,7 @@ void CWin_LogicSimulatorDoc::Serialize(CArchive& ar)
 		for (int i = 0; i < m_BitmapName.GetSize(); ++i) {
 			bitmap_name[i] = m_BitmapName[i];
 		}
-
+		
 		// TODO: 여기에 로딩 코드를 추가합니다.
 	}
 }

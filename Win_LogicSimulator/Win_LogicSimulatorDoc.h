@@ -16,10 +16,9 @@ protected: // serialization에서만 만들어집니다.
 
 // 특성입니다.
 public:
-	CArray <int, int&> m_BitmapX;
-	CArray <int, int&> m_BitmapY;
-	CArray <int, int&> m_BitmapName;
-	CArray <CString, CString&> m_GateName;
+	CUIntArray m_BitmapX;
+	CUIntArray m_BitmapY;
+	CUIntArray m_BitmapName;
 	
 // 작업입니다.
 public:
