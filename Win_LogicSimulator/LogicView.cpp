@@ -753,7 +753,7 @@ void LogicView::OnMouseMove(UINT nFlags, CPoint point)
 							pDC->MoveTo(m_ptStart);
 							pDC->LineTo(m_ptBitmapX[current], m_ptBitmapY[current] + 120);
 							if (inputvalue[p] == 1){
-								bitmap_name[i] = IDB_BITMAP47;
+								bitmap_name[i] = IDB_BITMAP46;
 								Invalidate(TRUE);
 							}
 						}
@@ -1553,7 +1553,7 @@ void LogicView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (nFlags & MK_RBUTTON){					
 		listvalue = 0;
-
+	
 	}
 	else if(listvalue > 99 && listvalue < 499){											//게이트 그리기
 		CDC* pDC = GetDC();
