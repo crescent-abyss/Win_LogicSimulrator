@@ -1890,7 +1890,7 @@ void LogicView::OnRedo() {			//와이어링 미구현
 }
 }
 
-void LogicView::Cut() {
+void LogicView::Cut() {								//잘라내기
 	for (i = 0; i < max; ++i) {
 		CDC * pDC = GetDC();
 		CBitmap bmp;
