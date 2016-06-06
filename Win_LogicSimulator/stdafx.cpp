@@ -22,3 +22,5 @@ int check = 0;
 int InfomationValue = 0;
 int test = 0;
 int Undo_max = 0;
+int Layer_column = 0;
+int j = 0;

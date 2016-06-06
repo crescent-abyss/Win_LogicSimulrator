@@ -23,6 +23,7 @@ extern int check;
 extern int InfomationValue;
 extern int Undo_max;
 extern int Layer_column;
+extern int j;
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1
 #endif
