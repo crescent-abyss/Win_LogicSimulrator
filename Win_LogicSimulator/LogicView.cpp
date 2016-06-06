@@ -1952,7 +1952,6 @@ void LogicView::Paste() {
 
 		Invalidate();
 	}
-
 }
 
 void LogicView::Copy() {
