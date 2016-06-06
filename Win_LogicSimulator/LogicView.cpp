@@ -1862,7 +1862,7 @@ void LogicView::OnPaint()
 	//i = i++;
 }
 
-void LogicView::OnUndo() {			//와이어링 미구현
+void LogicView::OnUndo() {			//와이어링 미구현 Undo
 	if (max != 0) {
 		if (bitmap_name[max - 1] == IDB_BITMAP10) {
 			test--;
@@ -1876,7 +1876,7 @@ void LogicView::OnUndo() {			//와이어링 미구현
 }
 }
 
-void LogicView::OnRedo() {			//와이어링 미구현
+void LogicView::OnRedo() {			//와이어링 미구현	Redo
 	if (max < Undo_max) {
 		max++;
 		if (bitmap_name[max - 1] == IDB_BITMAP10) {
