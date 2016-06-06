@@ -219,5 +219,41 @@
     <Image Include="res\T3.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\segmentjpg.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment0.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment4.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment5.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment6.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment7.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment8.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\segment9.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
