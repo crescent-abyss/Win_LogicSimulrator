@@ -1982,6 +1982,7 @@ int LogicView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
+
 	make_libraryBox.Create(_T("라이브러리 만들기"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(0, 0, 140, 20), this, 680);
 	return 0;
 }
