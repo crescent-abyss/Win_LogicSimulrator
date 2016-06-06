@@ -1954,7 +1954,7 @@ void LogicView::Paste() {
 	}
 }
 
-void LogicView::Copy() {
+void LogicView::Copy() {					//복사
 	for (i = 0; i < max; ++i) {
 		CDC * pDC = GetDC();
 		CBitmap bmp;
